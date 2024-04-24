@@ -5,3 +5,9 @@
 - Equipo: Bookster
 - Proyecto: Libroteka
 - Cohorte: 2023
+
+
+Stack: 
+- Python 3.8
+- Django 4.2
+- Angular 17
