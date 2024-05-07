@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Libroteka</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+    
+<section>
+    
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="mt-3">
+            <div class="col text-center mt-3">
+              <p><a href="# " class="btn btn-primary">SUSCRIBIRSE AQUI</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <h3>CONTACTO</h3>
+              <p>
+                Email:
+                <a href="mailto:librerias@libroteka.com "
+                  >librerias@libroteka.com</a
+                >
+              </p>
+              <p>
+                Teléfono:
+                <a href="tel:081022254276 ">0810 222 LIBRO (54276)</a>
+              </p>
+              <p>
+                WhatsApp:
+                <a href="https://web.whatsapp.com/ " target="_blank"
+                  >+54 9 351 1234567</a
+                >
+              </p>
+              <p>
+                Arrepentimiento:
+                <a href="{% url 'contacto' %}">Click Aquí</a>
+              </p>
+            </div>
+            <div class="col text-center-md-4">
+              <h3>EXPLORAR</h3>
+              <ul>
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'categorias' %}">Categorias</a></li>
+                <li><a href="{% url 'mas_vendidos' %}">Mas Vendidos</a></li>
+                <li>
+                  <a href="{% url 'sobreNosotros' %}">Sobre Nosotros</a>
+                </li>
+                <li><a href="{% url 'contacto' %}">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="col text-center-md-4">
+              <h3>MI CUENTA</h3>
+              <ul>
+                <li><a href="{% url 'login' %}">Ingresar</a></li>
+                <li><a href="#">Ver Carrito</a></li>
+                <li><a href="#">Favoritos</a></li>
+                <li><a href="#">Finalizar Compra</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container">
+              <div class="row">
+                <div class="col text-center">
+                  <p>&copy; 2023 Tu Tienda online</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+<!-- redes sociales -->
+    <div class="container-fluid position-fixed top-50">
+      <div class="row">
+        <div class="container-fluid">
+          <a href="https://facebook.com/"
+            ><i class="fa-brands fa-square-facebook fa-xl"></i
+          ></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container-fluid">
+          <a href="https://twitter.com/"
+            ><i class="fa-brands fa-square-twitter fa-xl"></i
+          ></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container-fluid">
+          <a href="https://www.whatsapp.com/"
+            ><i class="fa-brands fa-square-whatsapp fa-xl"></i
+          ></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container-fluid">
+          <a href="https://www.instagram.com/"
+            ><i class="fa-brands fa-square-instagram fa-xl"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+<!-- redes sociales -->
+    <script
+      src="https://kit.fontawesome.com/6a6212d90e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</section>

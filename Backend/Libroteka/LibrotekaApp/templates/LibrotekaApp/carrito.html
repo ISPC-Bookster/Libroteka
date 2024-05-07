@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Carrito de Compras</h2>
+
+    {% if carrito_items %}
+      <div class="row">
+        {% for item in carrito_items %}
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.producto.nombre }}</h5>
+                <p class="card-text">Cantidad: {{ item.cantidad }}</p>
+                <!-- Agrega más detalles según tus necesidades -->
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <p class="font-weight-bold">Total: {{ total }}</p>
+      
+      <div class="text-center">
+        <button class="btn btn-primary">Proceder al Pago</button>
+      </div>
+    {% else %}
+      <p class="text-center">El carrito está vacío. ¡Agrega productos!</p>
+    {% endif %}
+  </div>
+{% endblock %}
+
