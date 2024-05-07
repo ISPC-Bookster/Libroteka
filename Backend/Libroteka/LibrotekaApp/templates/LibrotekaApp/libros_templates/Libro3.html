@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Detalle del Libro</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="background-color: #e7e0d8; padding-top: 70px;">
+    <header>
+      {% include 'LibrotekaApp/navbar.html' %}
+    </header>
+  
+
+    <div class="container fluid mb-5 mt-5">
+      <div class="row">
+        <div class="col-md-4 mt-5">
+          <img
+            src="https://http2.mlstatic.com/D_NQ_NP_2X_974576-MLA71798417766_092023-F.webp"
+            alt="Portada del Libro"
+            class="img-fluid max-width-50 max-height-50"
+          />
+        </div>
+        <div class="col-md-6 mt-5 book-details">
+          <h1 class="mb-4">Solenoide</h1>
+          <h3>Precio: $16900</h3>
+          <button>Añadir al carrito</button>
+          <p>Autor: Mircea Cartarescu</p>
+          <p>Disponibilidad: En existencia</p>
+          <hr />
+          <p>
+            Sinópsis: Solenoide es una novela monumental enla que resuenan ecos
+            de Pynchon, Borges, Swift y Kafka. Estamos anteel largo diario de un
+            escritor frustrado que desgrana su infancia y su adolescencia en los
+            arrabales de una ciudad comunista, devastada,gris y fría ?una
+            Bucarest alucinada, dotada de una melancolíaabrumadora?. Profesor de
+            Rumano en un instituto de barrio, con unacarrera literaria fracasada
+            y una profesión que no le interesa, compra una casa antigua con
+            forma de barco, construida por el inventor de un solenoide, que
+            alberga una extraña maquinaria: un sillón de dentistadotado de un
+            tablero de mandos. Pronto intima con una profesora que ha sido
+            captada por una secta mística, la de los piquetistas, queorganizan
+            manifestaciones nocturnas por los cementerios de la ciudad y por la
+            Morgue. Mientras tanto, el narrador se enfrenta aalucinaciones que
+            le revelan la verdad de su existencia. Solenoide esla piedra de
+            toque en torno a la que gravitan el resto de lasficciones de
+            C?rt?rescu. Una obra que atrae todas las pistas, lostemas, las
+            obsesiones literarias de un autor genial que se ha idoconvirtiendo,
+            poco a poco, en un escritor de culto. Genialidad, locura y grandeza.
+            La última y más madura novela delrumano Mircea C?rt?rescu, uno de
+            los más poderosos escritores europeos actuales, en una obra que le
+            ha llevado a ser comparado con Pynchon,Kafka y Kundera.
+          </p>
+          <p>Editorial: Impedimenta</p>
+          <p>I.S.B.N: 09788417115456</p>
+          <p>Nro. de Páginas: 800</p>
+          <p>Idioma: ESPAÑOL</p>
+          <p>Formato: LIBROS</p>
+          <p>Clasificación: Libros - Novela</p>
+          <p>Fecha de Publicación: 01/2018</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      {% include 'LibrotekaApp/footer.html' %}
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
