@@ -60,13 +60,16 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd Backend
+  cd Backend/Libroteka
 ```
 
-Activate Virtual environment
+Activate Virtual environment & install Django
 
 ```bash
   source backendLibroteka-env/bin/activate
+```
+```bash
+  pip install django==4.2
 ```
 
 Start the server
