@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card h-100 mb-3">
+        <div class="card-body text-center">
+          <div class="alert alert-info" role="alert">
+            <h2>CREÁ TU CUENTA</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card h-100 mb-3">
+        <div class="card-body">
+          <div class="mb-3">
+            <form [formGroup]="form">
+              <p style="color: rgb(19, 19, 103)">
+                <strong>Información Personal</strong>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <label for="name" class="form-label"
+                    >Nombre<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControljjj="name"
+                    class="form-control"
+                    placeholder="Ingrese su nombre"
+                  />
+                </div>
+                <div class="col">
+                  <label for="surnameInput" class="form-label"
+                    >Apellido<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlSurname="surname"
+                    class="form-control"
+                    placeholder="Ingrese su apellido"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="Inputidentification" class="form-label"
+                  >Número de DNI<span style="color: red">*</span></label
+                >
+                <input
+                  type="numeric"
+                  formControlIdentification="identification"
+                  class="form-control"
+                  placeholder="Ingrese su numero de documento"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="Inputmail" class="form-label"
+                  >Dirección de email<span style="color: red">*</span></label
+                >
+                <input
+                  type="mail"
+                  formControlMail="mail"
+                  class="form-control"
+                  placeholder="Ingrese su direccion de email"
+                />
+              </div>
+              <p style="color: rgb(19, 19, 103)">
+                <strong>Información de inicio de sesión</strong>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <div class="form-text">
+                    <label for="InputPassword" class="form-label"
+                      >Contraseña<span style="color: red">*</span></label
+                    >
+                    <input
+                      type="password"
+                      formControlPassword="password"
+                      class="form-control"
+                    />
+                    <span id="mensajeErrorPassword" style="color: red"></span>
+                  </div>
+                </div>
+                <div class="col">
+                  <label for="Inputconfirmpass" class="form-label">
+                    Confirme contraseña<span style="color: red">*</span>
+                  </label>
+                  <input
+                    type="password"
+                    formControlConfirmPass="confirmPass"
+                    class="form-control"
+                  />
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="Check"
+                    />
+                    <label class="form-check-label" for="Check"
+                      >Suscribirse al boletín de novedades</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <p>
+                  <strong
+                    ><a href="../index.html" style="color: rgb(19, 19, 103)"
+                      >Volver atrás</a
+                    ></strong
+                  >
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
