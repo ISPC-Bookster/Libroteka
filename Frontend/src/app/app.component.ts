@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+
+import { RedesSocialesComponent } from './redes-sociales/redes-sociales.component';
+import { BusquedaPersonalizadaComponent } from './busqueda-personalizada/busqueda-personalizada.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,RouterLink,LoginComponent,RedesSocialesComponent,BusquedaPersonalizadaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
