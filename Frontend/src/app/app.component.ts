@@ -12,12 +12,15 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
   selector: 'app-root',
   standalone: true,
   imports: [
-    
     RouterOutlet,
     LandingComponent,
     CreateComponent,
-    SocialnetComponent,
-  , NavbarComponent, FooterComponent, HeaderComponent, ContactoComponent, SobreNosotrosComponent,
+    SocialnetComponent, 
+    NavbarComponent, 
+    FooterComponent, 
+    HeaderComponent, 
+    ContactoComponent, 
+    SobreNosotrosComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
