@@ -13,6 +13,12 @@ Dependencies:
 - Python: "^3.8"
 - Django: "^4.2"
 
+Puntos claves:
+- Formulario IEEE830: https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830
+- Scrum - Registro de ceremonias: https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias
+- Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
+- Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
+
 ## Run Locally
 <table>
 <tr>
