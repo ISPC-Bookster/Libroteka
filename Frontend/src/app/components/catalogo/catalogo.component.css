@@ -54,11 +54,11 @@ body {
     padding: 15px 0;
     margin-bottom: 20px;
     box-shadow: -15px -10px rgb(235, 235, 201);
-    background: #fff239;
+    background: #1623df;
 
     text-align: center;
     text-decoration: none;
-    color: #000000;
+    color: #fff;
 }
 
 .category_list .ct_item-active {
@@ -97,9 +97,9 @@ body {
     display: block;
     width: 100%;
     padding: 8px 0;
-    background: #f9ff4b;
+    background: #1623df;
 
-    color: #000000;
+    color: #fff;
     text-align: center;
     text-decoration: none;
 
