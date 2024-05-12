@@ -1,0 +1,135 @@
+
+
+  <div class="title text-center  " >
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="card h-100 mb-3">
+            <div class="card-body text-center">
+              <div class="alert alert-info" role="alert">
+                <h2>INGRESAR O CREAR UNA CUENTA</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card h-100 mb-3">
+            <div class="card-body">
+              <div class="alert alert-primary" role="alert">
+                <h5>Nuevo Cliente</h5>
+              </div>
+              <p>
+                Registrarse es simple y seguro. Te pediremos solo algunos
+                datos para hacer el seguimiento de los pedidos y poder
+                procesar tus compras más rápido. Además podrás recibir
+                ofertas, promociones e información de los últimos
+                lanzamientos.
+              </p>
+
+              <a routerLink ="/create" class="btn btn-primary">CREAR CUENTA</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100 mb-3">
+            <div class="card-body">
+              <div class="alert alert-primary" role="alert">
+                <h5>Usuario Registrado</h5>
+              </div>
+              <p>
+                Gracias por volver a visitarnos, te pedimos que ingreses tu
+                usuario y contraseña para ingresar a tu cuenta.
+              </p>
+              <form [formGroup]="form" id="loginForm" action="procesar_login.php" method="post">
+                <div class="mb-3">
+                  <label for="idE" class="form-label"
+                    >Dirección de email</label
+                  >
+                  <input
+                    type="email"
+                    formControlName = "email"
+                    class="form-control"
+                    id="idE"
+                    name="email"
+                    aria-describedby="idEH"
+                  />
+                  @if (Email?.errors && Email?.touched) { 
+                    @if(Email?.hasError('required')) {
+                    <p class="text-danger">Este campo es obligatorio.</p>
+                    } @else if (Email?.hasError('email')) {
+                    <p class="text-danger">
+                      El correo debe tener un formato válido.
+                    </p> 
+                    }
+                  }  
+                </div>
+                <div class="mb-3">
+                  <label for="InputPassword" class="form-label"
+                    >Contraseña</label
+                  >
+                  <input
+                    type="password"
+                    formControlName = "password"
+                    class="form-control"
+                    id="InputPassword"
+                    name="password"
+                  />
+                  @if (Password?.errors && Password?.touched) {
+                    @if(Password?.hasError('required')) {
+                      <p class="text-danger">Este campo es obligatorio.</p>
+                      } @else if (Password?.hasError('minlength')) {
+                        <p class="text-danger">La contraseña debe tener al menos 8 caracteres.</p>
+                      }
+                  } 
+                </div>
+                <div class="mb-3 form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="Check"
+                  />
+                  <label class="form-check-label">Recordarme</label>
+                </div>
+                <button type="submit" class="btn btn-primary">ACCEDER</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card h-100 mb-3">
+          <div class="card-body text-center"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 mb-3">
+          <div class="card-body text-center">
+            <p>
+              <strong
+                ><a href="#" style="color: rgb(19, 19, 103)"
+                  >¿Olvidó su contraseña?</a
+                ></strong
+              >
+            </p>
+            <p>
+              <strong
+                ><a href="#" style="color: rgb(19, 19, 103)"
+                  >Volver atrás</a
+                ></strong
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<router-outlet/>
