@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'librotekasite.apps.LibrotekasiteConfig'
 ]
 
 MIDDLEWARE = [
@@ -99,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = 'librotekasite.User'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
