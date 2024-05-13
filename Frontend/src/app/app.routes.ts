@@ -9,6 +9,8 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
+    {path: 'login', component: LoginComponent },
+    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },
     {path: 'catalogo', component: CatalogoComponent },
     {path: 'home', component: LandingComponent},
     {path: 'contacto', component: ContactoComponent},
@@ -16,9 +18,9 @@ export const routes: Routes = [
     {path: 'sobre-nosotros', component: SobreNosotrosComponent},
     {path: 'create', component: CreateComponent },
     {path: 'login', component:  LoginComponent},
-    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },
-    
+    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },  
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: '**', redirectTo: '/home', pathMatch: 'full'},//reemplazar por componente: 404, page not fount libroteka
+
 ];
 
