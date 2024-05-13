@@ -23,10 +23,8 @@ class Book(models.Model):
     id_Book = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     id_Author = models.ForeignKey(Author, to_field='id_Author', on_delete=models.CASCADE)
-    # id_Editor = models.
     genre = models.CharField(max_length=50)
     description= models.CharField(max_length=250)
-    # publicationDate= models.DateField()
     price= models.DecimalField(blank=False, decimal_places=2, max_digits=10)
     stock= models.IntegerField(blank=False, default=1000)
     
@@ -41,3 +39,21 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+class Customer(models.Model):
+
+    id_Customer = models.AutoField(primary_key=True)
+    email = models.EmailField(max_length=100)
+    dni = models.IntegerField(max_length=50)
+    telephone = models.IntegerField(max_length=50)
+
+    
+    class Meta:
+        db_table= 'customer'
+        verbose_name = "Customer"
+        verbose_name_plural = "Customers"
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.title
