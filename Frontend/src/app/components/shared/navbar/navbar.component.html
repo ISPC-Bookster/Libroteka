@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light py-1 sticky-top" style="background-color: #d9d1bd">
     <div class="container">
-        <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="index.html">
+        <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" routerLink="/home">
             <img src="assets/Book_25711.png" alt="icono del sitio a modificar" />
             <span class="text-uppercase fw-lighter ms-2">Libroteka</span>
         </a>
@@ -17,7 +17,7 @@
                 class="position-absolute top-0 start-100 translate-middle badge bg-primary"
               ></span>
             </button>
-            <button routerLink="/busqueda-personalizada"  type="button" class="btn position-relative">
+            <button routerLink="/busqueda-personalizada" type="button" class="btn position-relative">
               <i class="fa fa-search"></i>
             </button>
         </div>
@@ -42,8 +42,8 @@
               <li class="nav-item px-2 py-2">
                 <a
                   class="nav-link text-uppercase text-dark"
-                  href="./pages/masvendidos.html"
-                  >mas vendidos</a
+                  routerLink="/dashboard"
+                  >Dashboard</a
                 >
               </li>
               <li class="nav-item px-2 py-2">
@@ -55,10 +55,10 @@
 
                 <li class="nav-item px-2 py-2">
                     <a class="nav-link text-uppercase text-dark" routerLink="/contacto">contacto</a>
-              </li>
-              <li class="nav-item px-2 py-2">
-                <a class="nav-link text-uppercase text-dark" routerLink="/login" >INGRESAR</a>
-              </li>
+                </li>
+                <li class="nav-item px-2 py-2">
+                    <a class="nav-link text-uppercase text-dark" routerLink="/login">INGRESAR</a>
+                </li>
             </ul>
         </div>
     </div>
