@@ -7,6 +7,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
+import { LoginComponent } from './components/login/login.component';
+import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
     HeaderComponent, 
     ContactoComponent, 
     SobreNosotrosComponent,
+    LoginComponent,
+    BusquedaPersonalizadaComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
