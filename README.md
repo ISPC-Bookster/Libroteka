@@ -23,6 +23,10 @@ Credenciales django:
 user: superadmin
 password: libroteka
 
+Librerías: 
+django djangorestframework django-cors-headers Pillow
+pipenv install jsonfield
+
 ## Run Locally
 <table>
 <tr>
