@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+# from django.contrib.auth.admin import UserAdmin
 
 from .models import Book
 from .models import Author
-from .models import User
+# from .models import User
 from .models import Editorial
 from .models import Genre
 from .models import Order
@@ -24,14 +24,14 @@ class GenreAdmin(admin.ModelAdmin):
 class OrderStatusAdmin(admin.ModelAdmin):
     list_display = ('status',)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id_Order_Status', 'id_User', 'date', 'books', 'total', 'books_amount')
+    list_display = ('id_Order_Status', 'date', 'books', 'total', 'books_amount')
 # class UserAdmin(admin.ModelAdmin):
 #     list_display = ('first_name', 'last_name', 'email', 'password', 'dni', 'telephone', 'province', 'city', 'address')
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Editorial, EditorialAdmin)
-admin.site.register(User, UserAdmin)
+# admin.site.register(User, UserAdmin)
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderStatus, OrderStatusAdmin)

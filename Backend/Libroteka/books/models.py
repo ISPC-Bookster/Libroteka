@@ -4,31 +4,28 @@ from django.core.validators import RegexValidator
 from jsonfield import JSONField
 from django.conf import settings
 
-class User(AbstractUser):
-    # first_name = models.CharField(max_length=100)
-    # last_name = models.CharField(max_length=100)
-    # email = models.EmailField(primary_key=True,unique=True)
-    # password = models.CharField(max_length=50)
-    dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')])
-    telephone = models.CharField(max_length=12, validators=[RegexValidator(r'^\d{1,10}$')])
-    province = models.CharField(max_length=50)
-    city =models.CharField(max_length=50)
-    address= models.CharField(max_length=50)
-    is_staff = models.BooleanField(default=False)
+# class User(AbstractUser):
+#     first_name = models.CharField(max_length=100)
+#     last_name = models.CharField(max_length=100)
+#     email = models.EmailField(primary_key=True,unique=True)
+#     password = models.CharField(max_length=50)
+#     dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')])
+#     telephone = models.CharField(max_length=12, validators=[RegexValidator(r'^\d{1,10}$')])
+#     province = models.CharField(max_length=50)
+#     city =models.CharField(max_length=50)
+#     address= models.CharField(max_length=50)
+#     is_staff = models.BooleanField(default=False)
 
-    class Meta:
-        db_table= 'users'
-        verbose_name = "Usuario"
-        verbose_name_plural = "Usuarios"
+#     class Meta:
+#         db_table= 'users'
+#         verbose_name = "Usuario"
+#         verbose_name_plural = "Usuarios"
 
-    def __unicode__(self):
-        return self.name
+#     def __unicode__(self):
+#         return self.name
 
-    def __str__(self):
-        return self.name
-
-    def __str__(self):
-        return self.email
+#     def __str__(self):
+#         return self.name
 
 class Author(models.Model):
 
@@ -132,7 +129,7 @@ class Order(models.Model):
 
     id_Order = models.AutoField(primary_key=True)
     id_Order_Status = models.ForeignKey(OrderStatus, to_field='id_Order_Status', on_delete=models.CASCADE)
-    id_User = models.ForeignKey(settings.AUTH_USER_MODEL, to_field='email',  null=True, blank=True, on_delete=models.CASCADE)    
+    # id_User = models.ForeignKey(settings.AUTH_USER_MODEL, to_field='email',  null=True, blank=True, on_delete=models.CASCADE)    
     date = models.DateTimeField()
     books = JSONField(default=list)
     total = models.DecimalField(blank=False, decimal_places=2, max_digits=10)
