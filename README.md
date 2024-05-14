@@ -24,8 +24,8 @@ user: superadmin
 password: libroteka
 
 Librerías: 
-django djangorestframework django-cors-headers Pillow
-pipenv install jsonfield
+pip install django djangorestframework django-cors-headers Pillow
+pip install jsonfield
 
 ## Run Locally
 <table>
