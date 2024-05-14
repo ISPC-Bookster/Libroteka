@@ -19,6 +19,14 @@ Puntos claves:
 - Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
 - Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
 
+Credenciales django:
+user: superadmin
+password: libroteka
+
+Librerías: 
+pip install django djangorestframework django-cors-headers Pillow
+pip install jsonfield
+
 ## Run Locally
 <table>
 <tr>
