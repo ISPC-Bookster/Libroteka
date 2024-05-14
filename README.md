@@ -19,6 +19,10 @@ Puntos claves:
 - Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
 - Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
 
+Credenciales django:
+user: superadmin
+password: libroteka
+
 ## Run Locally
 <table>
 <tr>
