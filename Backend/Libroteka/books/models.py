@@ -1,31 +1,28 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.validators import RegexValidator
 from jsonfield import JSONField
 from django.conf import settings
 
-# class User(AbstractUser):
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     email = models.EmailField(primary_key=True,unique=True)
-#     password = models.CharField(max_length=50)
-#     dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')])
-#     telephone = models.CharField(max_length=12, validators=[RegexValidator(r'^\d{1,10}$')])
-#     province = models.CharField(max_length=50)
-#     city =models.CharField(max_length=50)
-#     address= models.CharField(max_length=50)
-#     is_staff = models.BooleanField(default=False)
+class User(AbstractUser):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(primary_key=True, unique=True)
+    dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')])
+    telephone = models.CharField(max_length=12, validators=[RegexValidator(r'^\d{1,10}$')])
+    province = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
+    is_staff = models.BooleanField(default=False)
+    groups = models.ManyToManyField(Group, related_name='books_users')
+    user_permissions = models.ManyToManyField(Permission, related_name='books_users')
 
-#     class Meta:
-#         db_table= 'users'
-#         verbose_name = "Usuario"
-#         verbose_name_plural = "Usuarios"
-
-#     def __unicode__(self):
-#         return self.name
-
-#     def __str__(self):
-#         return self.name
+    class Meta:
+        db_table = 'users'
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
+def __str__(self):
+    return f"{self.first_name} {self.last_name}"
 
 class Author(models.Model):
 
