@@ -4,6 +4,7 @@ from knox import views as knox_views
 
 from .views import AuthorViewSet, EditorialViewSet, GenreViewSet, OrderViewSet, OrderStatusViewSet, BookViewSet, RegisterAPI, LoginAPI
 
+
 router = DefaultRouter()
 router.register(r'authors', AuthorViewSet)
 router.register(r'editorials', EditorialViewSet)

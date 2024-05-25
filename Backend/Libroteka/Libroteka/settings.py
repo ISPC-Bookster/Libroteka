@@ -82,6 +82,11 @@ WSGI_APPLICATION = 'Libroteka.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+#Cambiar datos con la base de datos de cada uno 
+#Ejecutar este comando   py manage.py migrate   
+#Ejecute py manage.py runserver
+
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
