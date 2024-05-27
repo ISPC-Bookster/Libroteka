@@ -5,15 +5,11 @@ from jsonfield import JSONField
 from django.conf import settings
 
 class User(AbstractUser):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(primary_key=True, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=35)
     dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')])
-    telephone = models.CharField(max_length=12, validators=[RegexValidator(r'^\d{1,10}$')])
-    province = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    is_staff = models.BooleanField(default=False)
+    email = models.EmailField(primary_key=True, unique=True)
+
     groups = models.ManyToManyField(Group, related_name='books_users')
     user_permissions = models.ManyToManyField(Permission, related_name='books_users')
 

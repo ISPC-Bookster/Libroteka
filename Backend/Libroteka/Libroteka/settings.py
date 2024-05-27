@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'libroteka',
         'USER': 'root',
-        'PASSWORD': 'Florgav1',
+        'PASSWORD': '2920',
         'HOST': 'localhost',
         'PORT': '3306',
     }
