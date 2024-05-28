@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: 'contacto', component: ContactoComponent,canActivate:[authGuard]},
     {path: 'socialnet', component: SocialnetComponent,canActivate:[authGuard] },
     {path: 'sobre-nosotros', component: SobreNosotrosComponent,canActivate:[authGuard]},
-    {path: 'create', component: CreateComponent,canActivate:[authGuard] },
+    {path: 'create', component: CreateComponent },
     {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent,canActivate:[authGuard] },
     {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
     {path: 'mas-vendidos', component:MasVendidosComponent,canActivate:[authGuard] },
