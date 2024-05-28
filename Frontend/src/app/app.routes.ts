@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MasVendidosComponent } from './components/mas-vendidos/mas-vendidos.component';
 import { authGuard } from './guards/auth-guard';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent },
@@ -23,7 +25,7 @@ export const routes: Routes = [
     {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent,canActivate:[authGuard] },
     {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
     {path: 'mas-vendidos', component:MasVendidosComponent,canActivate:[authGuard] },
+    {path: 'book/:bookId', component: BookDetailsComponent},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: '**',redirectTo: '/home', pathMatch: 'full'},
 ];
-
