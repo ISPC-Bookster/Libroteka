@@ -20,6 +20,10 @@ class User(AbstractUser):
 def __str__(self):
     return f"{self.first_name} {self.last_name}"
 
+class Role(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField()    
+
 class Author(models.Model):
 
     id_Author = models.AutoField(primary_key=True)
