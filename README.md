@@ -82,7 +82,9 @@ Activate Virtual environment & install Libraries
   source backendLibroteka-env/bin/activate
 ```
 ```bash
-  cd Libroteka/Backend/Libroteka
+ cd Libroteka/Backend/Libroteka
+```
+```bash
   pip install -r requirements.txt
 ```
 
