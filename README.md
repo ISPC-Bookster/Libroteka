@@ -25,7 +25,7 @@ Puntos claves:
 - FrontEnd:
 - BackEnd: django djangorestframework django-cors-headers Pillow jsonfield mysqlclient
 
-## Correr Localmente
+## Correr localmente
 <table>
 <tr>
 <th> FrontEnd </th>
