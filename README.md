@@ -1,11 +1,9 @@
 # Tecnicatura Superior en Desarrollo web y Aplicaciones Digitales
 ## Programación Web 1
 
-
 - Equipo: Bookster
 - Proyecto: Libroteka
 - Cohorte: 2023
-
 
 Dependencies: 
 - Node: "^18"
@@ -19,23 +17,19 @@ Puntos claves:
 - Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
 - Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
 
-Credenciales django:
-user: superadmin
-password: libroteka
+## Credenciales Django Admin
+- user: superadmin
+- password: libroteka
 
-Librerías: 
-django djangorestframework django-cors-headers Pillow jsonfield mysqlclient
+## Librerías
+- FrontEnd:
+- BackEnd: django djangorestframework django-cors-headers Pillow jsonfield mysqlclient
 
-## Run Locally
+## Correr Localmente
 <table>
 <tr>
-<th> Frontend </th>
-<th> Backend </th>
-</tr>
-<tr>
-
+<th> FrontEnd </th>
 <td>
-
 Clone the project
 
 ```bash
@@ -59,11 +53,13 @@ Start the server
 ```bash
   npm run start
 ```
-
-
 </td>
+</tr>
+</table>
+<table>
+<tr>
+<th> BackEnd </th>
 <td>
-
 Clone the project
 
 ```bash
@@ -79,7 +75,7 @@ Go to the project directory
 Activate Virtual environment & install Libraries
 
 ```bash
-  source backendLibroteka-env/bin/activate
+source backendLibroteka-env/bin/activate
 ```
 ```bash
  cd Libroteka/Backend/Libroteka
@@ -93,7 +89,7 @@ Start the server
 ```bash
   python manage.py runserver
 ```
-
 </td>
 </tr>
 </table>
+
