@@ -24,8 +24,7 @@ user: superadmin
 password: libroteka
 
 Librerías: 
-pip install django djangorestframework django-cors-headers Pillow
-pip install jsonfield
+django djangorestframework django-cors-headers Pillow jsonfield mysqlclient
 
 ## Run Locally
 <table>
@@ -77,13 +76,14 @@ Go to the project directory
   cd Backend/Libroteka
 ```
 
-Activate Virtual environment & install Django
+Activate Virtual environment & install Libraries
 
 ```bash
   source backendLibroteka-env/bin/activate
 ```
 ```bash
-  pip install django==4.2
+  cd Libroteka/Backend/Libroteka
+  pip install -r requirements.txt
 ```
 
 Start the server
