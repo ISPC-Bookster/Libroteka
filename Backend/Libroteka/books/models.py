@@ -21,8 +21,8 @@ class User(AbstractUser):
         db_table = 'users'
         verbose_name = "Usuario"
         verbose_name_plural = "Usuarios"
-def __str__(self):
-    return f"{self.first_name} {self.last_name}"
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 class Author(models.Model):
 
@@ -40,6 +40,7 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+    
 class Editorial(models.Model):
 
     id_Editorial = models.AutoField(primary_key=True)
@@ -60,7 +61,7 @@ class Editorial(models.Model):
 class Genre(models.Model):
 
     id_Genre = models.AutoField(primary_key=True)
-    genre = models.EmailField(max_length=100, default='Novela')
+    name = models.CharField(max_length=100, default='Novela')
 
     
     class Meta:
@@ -80,7 +81,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     id_Author = models.ForeignKey(Author, to_field='id_Author', on_delete=models.CASCADE, blank=True, null=True)
     id_Genre = models.ForeignKey(Genre, to_field='id_Genre', on_delete=models.CASCADE, blank=True, null=True)
-    description= models.CharField(max_length=250)
+    description= models.CharField(max_length=800)
     price= models.DecimalField(blank=False, decimal_places=2, max_digits=10)
     stock= models.IntegerField(blank=False, default=1000)
     id_Editorial = models.ForeignKey(Editorial, to_field='id_Editorial', on_delete=models.CASCADE, blank=True, null=True)
@@ -127,6 +128,7 @@ class Order(models.Model):
     id_Order = models.AutoField(primary_key=True)
     id_Order_Status = models.ForeignKey(OrderStatus, to_field='id_Order_Status', on_delete=models.CASCADE)
     # id_User = models.ForeignKey(settings.AUTH_USER_MODEL, to_field='email',  null=True, blank=True, on_delete=models.CASCADE)    
+    user = models.OneToOneField(User, on_delete=models.CASCADE,default=1)
     date = models.DateTimeField()
     books = JSONField(default=list)
     total = models.DecimalField(blank=False, decimal_places=2, max_digits=10)
