@@ -12,10 +12,10 @@ Dependencies:
 - Django: "^4.2"
 
 Puntos claves:
-- Formulario IEEE830: https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830
-- Scrum - Registro de ceremonias: https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias
-- Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
-- Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
+- Formulario IEEE830: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830)
+- Ceremonias - Scrum: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias)
+- Historias de Usuario: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario)
+- Milestones: [Link](https://github.com/ISPC-Bookster/Libroteka/milestones)
 
 ## Credenciales Django Admin
 - user: superadmin
