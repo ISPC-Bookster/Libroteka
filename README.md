@@ -16,6 +16,13 @@ Puntos claves:
 - Ceremonias - Scrum: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias)
 - Historias de Usuario: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario)
 - Milestones: [Link](https://github.com/ISPC-Bookster/Libroteka/milestones)
+- Branching Strategy:
+
+| Branch	| Naming Convention |
+| -- | -- |
+| Master |	"main"
+| Desarrollo	| "dev"
+| Rama Integrantes | iniciales-feature
 
 ## Credenciales Django Admin
 - user: superadmin
