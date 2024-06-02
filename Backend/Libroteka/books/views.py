@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import render
 from django.views import View
 from rest_framework import viewsets, generics, permissions, status
@@ -11,7 +11,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role
 from .serializer import (
-    AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
+    AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer,
     GenreSerializer, OrderSerializer, OrderStatusSerializer, BookSerializer, RoleSerializer, UserLibrotekaSerializer
 )
 
@@ -19,24 +19,29 @@ from .serializer import (
 from django.db.models import Q
 from rest_framework.permissions import AllowAny
 
+
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
 
 class EditorialViewSet(viewsets.ModelViewSet):
     queryset = Editorial.objects.all()
     serializer_class = EditorialSerializer
 
+
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+
 class BusquedaLibrosView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
     def get(self, request):
         criterio = request.GET.get('criterio')
@@ -56,9 +61,10 @@ class BusquedaLibrosView(APIView):
         else:
             return Response({'error': 'Criterio de búsqueda no válido'}, status=status.HTTP_400_BAD_REQUEST)
         if not books.exists():
-            return Response({'message': 'No se encontraron libros que coincidan con la búsqueda'}, status=status.HTTP_200_OK)  
+            return Response({'message': 'No se encontraron libros que coincidan con la búsqueda'}, status=status.HTTP_200_OK)
         books_data = BookSerializer(books, many=True).data
         return Response(books_data, status=status.HTTP_200_OK)
+
 
 class GetBooksByAuthorOrGenreOrTitleView(View):
     def get(self, request, *args, **kwargs):
@@ -72,27 +78,31 @@ class GetBooksByAuthorOrGenreOrTitleView(View):
             books = Book.objects.filter(id_Editorial__name__icontains=value)
         else:
             return JsonResponse({'error': 'Invalid search criterion'}, status=400)
-        data = [{'title': book.title, 
-                 'author': book.id_Author.name, 
-                 'genre': book.id_Genre.name, 
+        data = [{'title': book.title,
+                 'author': book.id_Author.name,
+                 'genre': book.id_Genre.name,
                  'editorial': book.id_Editorial.name,
                  'description': book.description,
                  'price': book.price,
                  'stock': book.stock} for book in books]
         return JsonResponse(data, safe=False)
-   
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
+
 class OrderStatusViewSet(viewsets.ModelViewSet):
     queryset = OrderStatus.objects.all()
     serializer_class = OrderStatusSerializer
+
+
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+
 class UserLibrotekaAPI(APIView):
     def get(self, request, format=None):
         # Obtener todos los usuarios
@@ -127,12 +137,16 @@ class UserLibrotekaAPI(APIView):
         try:
             return User.objects.get(pk=pk)
         except User.DoesNotExist:
-            raise Http404    
+            raise Http404
+
+
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.AllowAny] 
+    permission_classes = [permissions.AllowAny]
 # Registration API
+
+
 class RegisterAPI(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
@@ -148,6 +162,8 @@ class RegisterAPI(generics.CreateAPIView):
         })
 
 # Login API
+
+
 class LoginAPI(KnoxLoginView):
     permission_classes = [permissions.AllowAny]
 
@@ -158,12 +174,14 @@ class LoginAPI(KnoxLoginView):
         login(request, user)
         return super().post(request, format=None)
 
+
 class RoleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
     permission_classes = [permissions.IsAdminUser]
 
+
 class RoleRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
-    permission_classes = [permissions.IsAdminUser]        
+    permission_classes = [permissions.IsAdminUser]

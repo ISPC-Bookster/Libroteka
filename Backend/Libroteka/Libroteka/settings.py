@@ -61,7 +61,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://localhost:*",
     "http://localhost:4200",
- ]
+]
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -109,22 +109,28 @@ WSGI_APPLICATION = 'Libroteka.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-#Cambiar datos con la base de datos de cada uno 
-#Ejecutar este comando   py manage.py migrate   
-#Ejecute py manage.py runserver
+# Cambiar datos con la base de datos de cada uno
+# Ejecutar este comando   py manage.py migrate
+# Ejecute py manage.py runserver
 
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'libroteka',
-        'USER': 'root',                   
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
- }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'sqlite3',
+#         'NAME': 'libroteka',
+#         'USER': 'root',
+#         'PASSWORD': 'adolfito06',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
 
+# }
 
 
 # Password validation
@@ -145,7 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = 'books.User'
+# AUTH_USER_MODEL = 'books.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -170,10 +176,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-   'DEFAULT_PERMISSION_CLASSES': [
-    #    'rest_framework.permissions.IsAuthenticated',
-   ],
-  'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_PERMISSION_CLASSES': [
+        #    'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'knox.auth.TokenAuthentication',
