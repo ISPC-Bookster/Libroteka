@@ -8,6 +8,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
 import { LoginComponent } from './components/login/login.component';
 import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { BusquedaPersonalizadaComponent } from './components/busqueda-personaliz
     ContactoComponent, 
     SobreNosotrosComponent,
     LoginComponent,
-    BusquedaPersonalizadaComponent
+    BusquedaPersonalizadaComponent,
+    BookDetailsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

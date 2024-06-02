@@ -1,4 +1,7 @@
-from rest_framework import viewsets, generics, permissions
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views import View
+from rest_framework import viewsets, generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
@@ -13,6 +16,9 @@ from .serializer import (
 )
 
 # ViewSets for different models
+from django.db.models import Q
+from rest_framework.permissions import AllowAny
+
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -24,6 +30,58 @@ class EditorialViewSet(viewsets.ModelViewSet):
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BusquedaLibrosView(APIView):
+    permission_classes = [AllowAny] 
+
+    def get(self, request):
+        criterio = request.GET.get('criterio')
+        value = request.GET.get('value')
+
+        if not criterio or not value:
+            return Response({'error': 'Criterio y valor son requeridos'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if criterio == 'author':
+            books = Book.objects.filter(id_Author__name__icontains=value)
+        elif criterio == 'genre':
+            books = Book.objects.filter(id_Genre__name__icontains=value)
+        elif criterio == 'editorial':
+            books = Book.objects.filter(id_Editorial__name__icontains=value)
+        elif criterio == 'title':
+            books = Book.objects.filter(title__icontains=value)
+        else:
+            return Response({'error': 'Criterio de búsqueda no válido'}, status=status.HTTP_400_BAD_REQUEST)
+        if not books.exists():
+            return Response({'message': 'No se encontraron libros que coincidan con la búsqueda'}, status=status.HTTP_200_OK)  
+        books_data = BookSerializer(books, many=True).data
+        return Response(books_data, status=status.HTTP_200_OK)
+
+class GetBooksByAuthorOrGenreOrTitleView(View):
+    def get(self, request, *args, **kwargs):
+        criterio = kwargs.get('criterio')
+        value = kwargs.get('value')
+        if criterio == 'author':
+            books = Book.objects.filter(id_Author__name__icontains=value)
+        elif criterio == 'genre':
+            books = Book.objects.filter(id_Genre__name__icontains=value)
+        elif criterio == 'editorial':
+            books = Book.objects.filter(id_Editorial__name__icontains=value)
+        else:
+            return JsonResponse({'error': 'Invalid search criterion'}, status=400)
+        data = [{'title': book.title, 
+                 'author': book.id_Author.name, 
+                 'genre': book.id_Genre.name, 
+                 'editorial': book.id_Editorial.name,
+                 'description': book.description,
+                 'price': book.price,
+                 'stock': book.stock} for book in books]
+        return JsonResponse(data, safe=False)
+   
+
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
