@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-q)sw(_dr!#=lvd4*lp51u9c($#(*q$7j%+m_n01+j#za)+p2%d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'Libroteka.wsgi.application'
 #Ejecute py manage.py runserver
 
 DATABASES = {
-    'default': {
+   'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'libroteka',
         'USER': 'root',                   
@@ -117,7 +117,8 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
     }
-}
+
+ }
 
 
 
@@ -173,4 +174,3 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
-

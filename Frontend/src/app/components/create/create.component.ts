@@ -1,28 +1,36 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  Validators,
-  ReactiveFormsModule,
-  FormGroup,
-  FormBuilder,
-} from '@angular/forms';
+import { Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CreateService } from './create.service'; // Asegúrate de que la ruta es correcta
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet],
+imports: [ReactiveFormsModule, RouterLink, RouterOutlet, CommonModule],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.css',
+  styleUrls: ['./create.component.css'],
 })
 export class CreateComponent {
   form!: FormGroup;
   successMessage: string = '';
   errorMessage: string = '';
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private createService: CreateService) {
     this.form = this.formBuilder.group(
       {
-        name: [
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+            Validators.pattern(/^[a-zA-Z0-9]+$/),
+          ],
+        ],
+        
+        
+        first_name: [
           '',
           [
             Validators.required,
@@ -31,7 +39,7 @@ export class CreateComponent {
             Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s']+/),
           ],
         ],
-        surname: [
+         last_name: [
           '',
           [
             Validators.required,
@@ -56,11 +64,14 @@ export class CreateComponent {
       { validators: this.checkPasswords }
     );
   }
-  get Name() {
-    return this.form.get('name');
+  get Username() {
+    return this.form.get('username');
   }
-  get Surname() {
-    return this.form.get('surname');
+  get FirstName() {
+    return this.form.get('first_name');
+  }
+  get LastName() {
+    return this.form.get('last_name');
   }
   get Identification() {
     return this.form.get('identification');
@@ -68,26 +79,33 @@ export class CreateComponent {
   get Email() {
     return this.form.get('email');
   }
-
   get Password() {
     return this.form.get('password');
   }
   get ConfirmPass() {
     return this.form.get('confirmpass');
   }
+
   onEnviar(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
       console.log(this.form.value);
-      this.successMessage =
-        'Recibira un correo electronico con los datos del registro';
-      this.errorMessage = '';
+      this.createService.registerUser(this.form.value).subscribe(
+        response => {
+          this.successMessage = 'Recibirá un correo electrónico con los datos del registro';
+          this.errorMessage = '';
+        },
+        error => {
+          this.errorMessage = 'No se pudo crear el registro, revisa las observaciones.';
+          console.error(error);
+        }
+      );
     } else {
-      this.errorMessage =
-        'No se pudo crear el registro, revisa las observaciones.';
+      this.errorMessage = 'No se pudo crear el registro, revisa las observaciones.';
       this.form.markAllAsTouched();
     }
   }
+
   checkPasswords(group: FormGroup) {
     const pass = group.get('password')?.value;
     const confirmPass = group.get('confirmpass')?.value;
@@ -98,6 +116,7 @@ export class CreateComponent {
     }
     return null;
   }
+
   showConfirmPassMessage = false;
   ConfirmPassMsg(event: any) {
     this.showConfirmPassMessage = true;
