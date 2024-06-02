@@ -2,9 +2,9 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes, withComponentInputBinding()),
-  importProvidersFrom(HttpClientModule)]
+  providers: [provideRouter(routes, withComponentInputBinding()), ReactiveFormsModule, provideHttpClient(), importProvidersFrom(HttpClientModule)]
 };
