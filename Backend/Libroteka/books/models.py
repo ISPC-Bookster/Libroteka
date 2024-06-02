@@ -81,7 +81,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     id_Author = models.ForeignKey(Author, to_field='id_Author', on_delete=models.CASCADE, blank=True, null=True)
     id_Genre = models.ForeignKey(Genre, to_field='id_Genre', on_delete=models.CASCADE, blank=True, null=True)
-    description= models.CharField(max_length=800)
+    description= models.TextField(max_length=1500)
     price= models.DecimalField(blank=False, decimal_places=2, max_digits=10)
     stock= models.IntegerField(blank=False, default=1000)
     id_Editorial = models.ForeignKey(Editorial, to_field='id_Editorial', on_delete=models.CASCADE, blank=True, null=True)

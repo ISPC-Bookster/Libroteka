@@ -118,7 +118,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'libroteka',
         'USER': 'root',                   
-        'PASSWORD': 'root',
+        'PASSWORD': 'libroteka',
         'HOST': 'localhost',
         'PORT': '3306',
     }
