@@ -22,7 +22,7 @@ Puntos claves:
 | -- | -- |
 | Master |	"main"
 | Desarrollo	| "dev"
-| Rama Integrantes | iniciales-feature
+| Rama Integrantes | "iniciales-feature"
 
 ## Credenciales Django Admin
 - user: superadmin
