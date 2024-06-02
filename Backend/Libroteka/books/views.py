@@ -3,6 +3,11 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.views import APIView
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views import View
+from rest_framework import viewsets, generics, permissions, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
@@ -12,7 +17,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role
 from .serializer import (
     AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
-    GenreSerializer, OrderSerializer, OrderStatusSerializer, BookSerializer, RoleSerializer, UserLibrotekaSerializer
+    GenreSerializer, BookSerializer, RoleSerializer, 
 )
 
 # ViewSets for different models
@@ -81,60 +86,7 @@ class GetBooksByAuthorOrGenreOrTitleView(View):
                  'stock': book.stock} for book in books]
         return JsonResponse(data, safe=False)
    
-
-
-class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-
-class OrderStatusViewSet(viewsets.ModelViewSet):
-    queryset = OrderStatus.objects.all()
-    serializer_class = OrderStatusSerializer
-class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-class UserLibrotekaAPI(APIView):
-    def get(self, request, format=None):
-        # Obtener todos los usuarios
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        # Crear un nuevo usuario
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request, pk, format=None):
-        # Actualizar un usuario existente
-        user = self.get_object(pk)
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        # Eliminar un usuario existente
-        user = self.get_object(pk)
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def get_object(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404    
-class UserListView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [permissions.AllowAny] 
-# Registration API
-class RegisterAPI(generics.CreateAPIView):
-    queryset = User.objects.all()
+class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
 

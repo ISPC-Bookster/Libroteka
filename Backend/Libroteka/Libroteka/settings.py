@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -113,21 +114,12 @@ WSGI_APPLICATION = 'Libroteka.wsgi.application'
 #Ejecutar este comando   py manage.py migrate   
 #Ejecute py manage.py runserver
 
-DATABASES = {  
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-##   'default': {
-##        'ENGINE': 'django.db.backends.mysql',
-##        'NAME': 'libroteka',
-##        'USER': 'root',                   
-##        'PASSWORD': 'root',
-##       'HOST': 'localhost',
-##       'PORT': '3306',
-   }
-
-
+}
 
 
 
