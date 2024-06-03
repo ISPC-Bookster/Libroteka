@@ -143,3 +143,26 @@ class UsersLibrotekaListCreate(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class CreateOrderView(APIView):
+    def post(self, request):
+        user_email = request.data.get('user_email')
+        user = UsersLibroteka.objects.get(email=user_email)
+        
+        order_status = OrderStatus.objects.get(status=OrderStatus.Status.PENDING)
+        data = {
+            'id_Order_Status': order_status.id_Order_Status,
+            'id_User': user.email,
+            'date': timezone.now(),
+            'books': request.data.get('books'),
+            'total': request.data.get('total'),
+            'books_amount': request.data.get('books_amount')
+        }
+        
+        serializer = OrderSerializer(data=data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

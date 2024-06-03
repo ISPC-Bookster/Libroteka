@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet} from '@angular/router';
+import { RouterModule, RouterOutlet} from '@angular/router';
 import { SocialnetComponent } from './components/shared/socialnet/socialnet.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -27,6 +28,8 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     BusquedaPersonalizadaComponent,
     BookDetailsComponent,
+    HttpClientModule,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
