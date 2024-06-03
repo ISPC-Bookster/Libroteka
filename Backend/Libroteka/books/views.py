@@ -3,21 +3,18 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.views import APIView
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from rest_framework import viewsets, generics, permissions, status
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 
-from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role
+from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from .serializer import (
     AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
-    GenreSerializer, BookSerializer, RoleSerializer, 
+    GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer
 )
 
 # ViewSets for different models
@@ -119,3 +116,17 @@ class RoleRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
     permission_classes = [permissions.IsAdminUser]        
+
+
+class UsersLibrotekaListCreate(APIView):
+    def get(self, request):
+        users = UsersLibroteka.objects.all()
+        serializer = UsersLibrotekaSerializer(users, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = UsersLibrotekaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

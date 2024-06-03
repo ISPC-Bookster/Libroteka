@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView
+from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate
 
 
 router = DefaultRouter()
@@ -23,5 +23,6 @@ urlpatterns = [
     path('roles/<int:pk>/', RoleRetrieveUpdateDestroyAPIView.as_view(), name='role-retrieve-update-destroy'),
     # path('user-libroteka/', UserLibrotekaAPI.as_view(), name='user-libroteka'),
     path('buscar-libros/', BusquedaLibrosView.as_view(), name='buscar_libros'),
+    path('users/', UsersLibrotekaListCreate.as_view(), name='users-list-create'),
     path('', include(router.urls)),
 ]

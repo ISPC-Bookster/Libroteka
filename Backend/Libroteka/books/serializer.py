@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from .models import Author, Editorial, Genre, Order, OrderStatus, Book, Role
+from .models import Author, Editorial, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -123,3 +125,16 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Role
         fields = ['id', 'name', 'description']     
+
+
+
+class UsersLibrotekaSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = UsersLibroteka
+        fields = ['username', 'first_name', 'last_name', 'dni', 'email', 'password']
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
