@@ -37,6 +37,10 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+class UsersLibrotekaViewSet(viewsets.ModelViewSet):
+    queryset = UsersLibroteka.objects.all()
+    serializer_class = UsersLibrotekaSerializer
+
 class BusquedaLibrosView(APIView):
     permission_classes = [AllowAny] 
 

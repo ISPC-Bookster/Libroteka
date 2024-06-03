@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate
+from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet
 
 
 router = DefaultRouter()
@@ -12,6 +12,7 @@ router.register(r'genre', GenreViewSet)
 # router.register(r'orders', OrderViewSet)
 # router.register(r'ordersStatus', OrderStatusViewSet)
 router.register(r'book', BookViewSet)
+router.register(r'users', UsersLibrotekaViewSet)
 
 urlpatterns = [
     path('registro/', RegisterAPI.as_view(), name='register'),
