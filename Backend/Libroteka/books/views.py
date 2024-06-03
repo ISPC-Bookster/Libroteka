@@ -7,14 +7,18 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
 from knox.models import AuthToken
-from knox.views import LoginView as KnoxLoginView
-from django.contrib.auth import login
+# from knox.views import LoginView as KnoxLoginView
+from django.contrib.auth import login, authenticate
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import check_password
+
+import json
 
 from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from .serializer import (
     AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
-    GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer
+    GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer, LoginSerializer
 )
 
 # ViewSets for different models
@@ -109,16 +113,59 @@ class RegisterAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
+class LoginAPI(APIView):
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
+            try:
+                user = UsersLibroteka.objects.get(email=email)
+                if check_password(password, user.password):
+                    return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+                else:
+                    return Response({"message": "Invalid password"}, status=status.HTTP_401_UNAUTHORIZED)
+            except UsersLibroteka.DoesNotExist:
+                return Response({"message": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Login API
-class LoginAPI(KnoxLoginView):
-    permission_classes = [permissions.AllowAny]
+# @csrf_exempt
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super().post(request, format=None)
+# class LoginAPI(KnoxLoginView):
+#     permission_classes = [permissions.AllowAny]
+
+    # def post(self, request, format=None):
+    #     serializer = AuthTokenSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     user = serializer.validated_data['user']
+    #     login(request, user)
+    #     return super().post(request, format=None)
+# ---
+    # def post(self, request, format=None):
+    #     serializer = AuthTokenSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     user = serializer.validated_data['user']
+    #     login(request, user)
+    #     return super(LoginAPI, self).post(request, format=None)
+    # def login_view(request):
+    #     if request.method == 'POST':
+    #         data = json.loads(request.body)
+    #         email = data.get('email')
+    #         password = data.get('password')
+# --       
+    #     try:
+    #         user = User.objects.get(email=email)
+    #     except User.DoesNotExist:
+    #         return JsonResponse({'message': 'Invalid email or password'}, status=401)
+        
+    #     user = authenticate(username=user.username, password=password)
+        
+    #     if user is not None:
+    #         login(request, user)
+    #         return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
+    #     else:
+    #         return JsonResponse({'message': 'Invalid email or password'}, status=401)
+    #     return JsonResponse({'message': 'Method not allowed'}, status=405)
 
 class RoleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Role.objects.all()
@@ -143,3 +190,25 @@ class UsersLibrotekaListCreate(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+# @csrf_exempt
+# def login_view(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         email = data.get('email')
+#         password = data.get('password')
+        
+#         try:
+#             user = User.objects.get(email=email)
+#         except User.DoesNotExist:
+#             return JsonResponse({'message': 'Invalid email or password'}, status=401)
+        
+#         user = authenticate(username=user.username, password=password)
+        
+#         if user is not None:
+#             login(request, user)
+#             return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
+#         else:
+#             return JsonResponse({'message': 'Invalid email or password'}, status=401)
+#     return JsonResponse({'message': 'Method not allowed'}, status=405)
