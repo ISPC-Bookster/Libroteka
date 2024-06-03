@@ -9,6 +9,7 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
 import { LoginComponent } from './components/login/login.component';
 import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
   standalone: true,
   imports: [
     RouterOutlet,
+    CommonModule,
     SocialnetComponent, 
     NavbarComponent, 
     FooterComponent, 
