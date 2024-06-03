@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet
+from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet, LibrosView
 
 
 
