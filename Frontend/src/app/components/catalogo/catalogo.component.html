@@ -2,20 +2,40 @@
   <h1>Categoria por Generos</h1>
   <div class="store-wrapper">
     <div class="category_list">
-      <a href="#" class="category_item" (click)="filterBooks('todo')">Todo</a>
-      <a href="#" class="category_item" (click)="filterBooks('poesia')"
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('todo')"
+        >Todo</a
+      >
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('poesia')"
         >Poesia</a
       >
-      <a href="#" class="category_item" (click)="filterBooks('ficcion')"
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('ficcion')"
         >Ficcion</a
       >
-      <a href="#" class="category_item" (click)="filterBooks('aventura')"
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('aventura')"
         >Aventura</a
       >
-      <a href="#" class="category_item" (click)="filterBooks('terror')"
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('terror')"
         >Terror</a
       >
-      <a href="#" class="category_item" (click)="filterBooks('novela')"
+      <a
+        href="http://127.0.0.1:8000/api/libros/"
+        class="category_item"
+        (click)="filterBooks('novela')"
         >Novela</a
       >
     </div>
@@ -26,7 +46,7 @@
         [attr.category]="book.category"
       >
         <img [src]="book.photo" alt="{{ book.title }}" />
-        <a href="#">{{ book.title }}</a>
+        <a href="http://127.0.0.1:8000/api/libros/">{{ book.title }}</a>
       </div>
     </section>
   </div>
