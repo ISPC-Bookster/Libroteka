@@ -41,6 +41,15 @@ class UsersLibrotekaViewSet(viewsets.ModelViewSet):
     queryset = UsersLibroteka.objects.all()
     serializer_class = UsersLibrotekaSerializer
 
+class LibrosView(APIView):
+    permission_classes = [AllowAny] 
+
+    def get(self, request):
+        books = Book.objects.all()
+        books_data = BookSerializer(books, many=True).data
+        return Response(books_data, status=status.HTTP_200_OK)
+    
+
 class BusquedaLibrosView(APIView):
     permission_classes = [AllowAny] 
 

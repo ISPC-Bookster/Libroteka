@@ -5,6 +5,7 @@ from knox import views as knox_views
 from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet
 
 
+
 router = DefaultRouter()
 router.register(r'authors', AuthorViewSet)
 router.register(r'editorials', EditorialViewSet)
@@ -25,5 +26,6 @@ urlpatterns = [
     # path('user-libroteka/', UserLibrotekaAPI.as_view(), name='user-libroteka'),
     path('buscar-libros/', BusquedaLibrosView.as_view(), name='buscar_libros'),
     path('users/', UsersLibrotekaListCreate.as_view(), name='users-list-create'),
+    path('libros/', LibrosView.as_view(), name='libros'),
     path('', include(router.urls)),
 ]
