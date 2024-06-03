@@ -13,7 +13,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from .serializer import (
-    AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
+    AuthorSerializer, BookSummarySerializer, EditorialSerializer, UserSerializer, RegisterSerializer,
     GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer
 )
 
@@ -21,37 +21,43 @@ from .serializer import (
 from django.db.models import Q
 from rest_framework.permissions import AllowAny
 
+
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
 
 class EditorialViewSet(viewsets.ModelViewSet):
     queryset = Editorial.objects.all()
     serializer_class = EditorialSerializer
 
+
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+
 class UsersLibrotekaViewSet(viewsets.ModelViewSet):
     queryset = UsersLibroteka.objects.all()
     serializer_class = UsersLibrotekaSerializer
 
+
 class LibrosView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
     def get(self, request):
         books = Book.objects.all()
-        books_data = BookSerializer(books, many=True).data
+        books_data = BookSummarySerializer(books, many=True).data
         return Response(books_data, status=status.HTTP_200_OK)
-    
+
 
 class BusquedaLibrosView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
     def get(self, request):
         criterio = request.GET.get('criterio')
@@ -71,9 +77,10 @@ class BusquedaLibrosView(APIView):
         else:
             return Response({'error': 'Criterio de búsqueda no válido'}, status=status.HTTP_400_BAD_REQUEST)
         if not books.exists():
-            return Response({'message': 'No se encontraron libros que coincidan con la búsqueda'}, status=status.HTTP_200_OK)  
+            return Response({'message': 'No se encontraron libros que coincidan con la búsqueda'}, status=status.HTTP_200_OK)
         books_data = BookSerializer(books, many=True).data
         return Response(books_data, status=status.HTTP_200_OK)
+
 
 class GetBooksByAuthorOrGenreOrTitleView(View):
     def get(self, request, *args, **kwargs):
@@ -87,15 +94,16 @@ class GetBooksByAuthorOrGenreOrTitleView(View):
             books = Book.objects.filter(id_Editorial__name__icontains=value)
         else:
             return JsonResponse({'error': 'Invalid search criterion'}, status=400)
-        data = [{'title': book.title, 
-                 'author': book.id_Author.name, 
-                 'genre': book.id_Genre.name, 
+        data = [{'title': book.title,
+                 'author': book.id_Author.name,
+                 'genre': book.id_Genre.name,
                  'editorial': book.id_Editorial.name,
                  'description': book.description,
                  'price': book.price,
                  'stock': book.stock} for book in books]
         return JsonResponse(data, safe=False)
-   
+
+
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
@@ -110,6 +118,8 @@ class RegisterAPI(generics.GenericAPIView):
         })
 
 # Login API
+
+
 class LoginAPI(KnoxLoginView):
     permission_classes = [permissions.AllowAny]
 
@@ -120,15 +130,17 @@ class LoginAPI(KnoxLoginView):
         login(request, user)
         return super().post(request, format=None)
 
+
 class RoleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
     permission_classes = [permissions.IsAdminUser]
 
+
 class RoleRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
-    permission_classes = [permissions.IsAdminUser]        
+    permission_classes = [permissions.IsAdminUser]
 
 
 class UsersLibrotekaListCreate(APIView):
