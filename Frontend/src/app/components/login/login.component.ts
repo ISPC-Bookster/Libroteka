@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,12 @@ export class LoginComponent {
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private loginService: LoginService, 
+    private router: Router,
+    private authService: AuthService 
+  ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -39,7 +45,8 @@ export class LoginComponent {
         response => {
           this.successMessage = 'Login successful';
           this.errorMessage = '';
-          // Handle successful login (e.g., store user token, navigate to another page)
+          this.authService.login(this.form.value.email); // Se guarda email
+          this.router.navigate(['/']); 
         },
         error => {
           this.errorMessage = 'Invalid email or password';
