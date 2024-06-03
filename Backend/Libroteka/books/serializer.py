@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from .models import Author, Editorial, Genre, Order, OrderStatus, Book, Role
+from .models import Author, Editorial, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -94,7 +96,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserLibrotekaSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'dni']  # Agrega aquí los campos adicionales si los necesitas
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'dni'] 
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -115,7 +117,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'], 
             email=validated_data['email'], 
             password=validated_data['password'],
-            dni=validated_data.get('dni')  # Asegúrate de que dni sea opcional y esté correctamente manejado
+            dni=validated_data.get('dni') 
         )
         return user
          
@@ -123,3 +125,16 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Role
         fields = ['id', 'name', 'description']     
+
+
+
+class UsersLibrotekaSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = UsersLibroteka
+        fields = ['username', 'first_name', 'last_name', 'dni', 'email', 'password']
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)

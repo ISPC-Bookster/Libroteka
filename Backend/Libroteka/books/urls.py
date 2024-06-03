@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, LibrosView, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView
+from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI, LoginAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet
+
 
 
 router = DefaultRouter()
@@ -12,6 +13,7 @@ router.register(r'genre', GenreViewSet)
 # router.register(r'orders', OrderViewSet)
 # router.register(r'ordersStatus', OrderStatusViewSet)
 router.register(r'book', BookViewSet)
+router.register(r'users', UsersLibrotekaViewSet)
 
 urlpatterns = [
     path('registro/', RegisterAPI.as_view(), name='register'),
@@ -23,6 +25,7 @@ urlpatterns = [
     path('roles/<int:pk>/', RoleRetrieveUpdateDestroyAPIView.as_view(), name='role-retrieve-update-destroy'),
     # path('user-libroteka/', UserLibrotekaAPI.as_view(), name='user-libroteka'),
     path('buscar-libros/', BusquedaLibrosView.as_view(), name='buscar_libros'),
+    path('users/', UsersLibrotekaListCreate.as_view(), name='users-list-create'),
     path('libros/', LibrosView.as_view(), name='libros'),
     path('', include(router.urls)),
 ]

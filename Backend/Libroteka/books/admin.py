@@ -8,6 +8,8 @@ from .models import Editorial
 from .models import Genre
 from .models import Order
 from .models import OrderStatus
+from .models import UsersLibroteka
+
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'id_Author', 'id_Genre', 'id_Editorial', 'description', 'price', 'stock')
@@ -30,6 +32,10 @@ class OrderAdmin(admin.ModelAdmin):
 # class UserAdmin(admin.ModelAdmin):
 #     list_display = ('first_name', 'last_name', 'email', 'password', 'dni', 'telephone', 'province', 'city', 'address')
 
+class UsersLibrotekaAdmin(admin.ModelAdmin):
+    list_display = ('username', 'first_name', 'last_name', 'dni', 'email', 'password')
+
+admin.site.register (UsersLibroteka, UsersLibrotekaAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Editorial, EditorialAdmin)
