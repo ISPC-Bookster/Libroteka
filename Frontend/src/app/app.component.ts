@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -27,6 +28,7 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     BusquedaPersonalizadaComponent,
     BookDetailsComponent,
+    FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

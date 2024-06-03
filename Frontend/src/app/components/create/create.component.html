@@ -1,255 +1,175 @@
 <div class="container form-container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card h-100 mb-3">
-        <div class="card-body text-center">
-          <div class="alert alert-info" role="alert">
-            <h2>CREÁ TU CUENTA</h2>
-          </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card h-100 mb-3">
+                <div class="card-body text-center">
+                    <div class="alert alert-info" role="alert">
+                        <h2>CREÁ TU CUENTA</h2>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <div class="container form-container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card h-100 mb-3">
-        <div class="card-body">
-          <div class="mb-3">
-            <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
-              <div *ngIf="successMessage" class="alert alert-success">
-                {{ successMessage }}
-              </div>
-              <div *ngIf="errorMessage" class="alert alert-danger">
-                {{ errorMessage }}
-                <div
-                  *ngIf="form.get('confirmpass')?.errors?.['notSame'] && form.get('confirmpass')?.touched"
-                  class="text-danger"
-                >
-                  Las contraseñas no coinciden.
-                </div>
-              </div>
-              <p style="color: rgb(19, 19, 103)">
-                <strong>Información Personal</strong>
-              </p>
-              
-              <div class="mb-3">
-                <label for="username" class="form-label"
-                  >Nombre de Usuario<span style="color: red">*</span></label
-                >
-                <input
-                  type="text"
-                  formControlName="username"
-                  class="form-control"
-                  placeholder="Ingrese su nombre de usuario"
-                />
-                <div *ngIf="Username?.errors && Username?.touched">
-                  <div *ngIf="Username?.hasError('required')" class="text-danger">
-                    Completar nombre de usuario es obligatorio.
-                  </div>
-                  <div *ngIf="Username?.hasError('minlength')" class="text-danger">
-                    El nombre de usuario debe tener un mínimo de 3 caracteres.
-                  </div>
-                  <div *ngIf="Username?.hasError('maxlength')" class="text-danger">
-                    El nombre de usuario debe tener un máximo de 20 caracteres.
-                  </div>
-                  <div *ngIf="Username?.hasError('pattern')" class="text-danger">
-                    El nombre de usuario debe contener solo caracteres alfanuméricos.
-                  </div>
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col">
-                  <label for="first_name" class="form-label"
-                    >Nombre<span style="color: red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    formControlName="first_name"
-                    class="form-control"
-                    placeholder="Ingrese su nombre"
-                  />
-                  @if (FirstName?.errors && FirstName?.touched) { @if
-                  (FirstName?.hasError('required')) {
-                  <p class="text-danger">Completar nombre es obligatorio.</p>
-                  } @else if (FirstName?.hasError('minlength')) {
-                  <p class="text-danger">
-                    El nombre debe tener un minimo de 2 caracteres.
-                  </p>
-                  } @else if (FirstName?.hasError('maxlength')) {
-                  <p class="text-danger">
-                    El nombre debe tener un maximo de 30 caracteres.
-                  </p>
-                  } @else if (FirstName?.hasError('pattern')) {
-                  <p class="text-danger">
-                    El nombre debe contener solo caracteres alfabeticos.
-                  </p>
-                  } }
-                </div>
-                <div class="col">
-                  <label for="last_name" class="form-label"
-                    >Apellido<span style="color: red">*</span></label
-                  >
-                  <input
-                    type="text"
-                    formControlName="last_name"
-                    class="form-control"
-                    placeholder="Ingrese su apellido"
-                  />
-                  @if (LastName?.errors && LastName?.touched) { @if
-                  (LastName?.hasError('required')) {
-                  <p class="text-danger">Completar apellido es obligatorio.</p>
-                  } @else if (LastName?.hasError('minlength')) {
-                  <p class="text-danger">
-                    El apellido debe tener un minimo de 2 caracteres.
-                  </p>
-                  } @else if (LastName?.hasError('maxlength')) {
-                  <p class="text-danger">
-                    El apellido debe tener un maximo de 35 caracteres.
-                  </p>
-                  } @else if (LastName?.hasError('pattern')) {
-                  <p class="text-danger">
-                    El apellido debe contener solo caracteres alfabeticos.
-                  </p>
-                  } }
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="Inputidentification" class="form-label"
-                  >Número de DNI<span style="color: red">*</span></label
-                >
-                <input
-                  type="text"
-                  formControlName="identification"
-                  class="form-control"
-                  placeholder="Ingrese su numero de documento"
-                />
-                @if (Identification?.errors && Identification?.touched) { @if
-                (Identification?.hasError('required')) {
-                <p class="text-danger">
-                  Completar el numero de DNI es obligatorio.
-                </p>
-                } @else if (Identification?.hasError('minlength')) {
-                <p class="text-danger">
-                  El numero de DNI debe tener un minimo de 6 caracteres.
-                </p>
-                } @else if (Identification?.hasError('maxlength')) {
-                <p class="text-danger">
-                  El numero de DNI debe tener un maximo de 6 caracteres.
-                </p>
-                } @else if (Identification?.hasError('pattern')) {
-                <p class="text-danger">
-                  El DNI debe contener solo caracteres numericos.
-                </p>
-                } }
-              </div>
-              <div class="mb-3">
-                <label for="Inputmail" class="form-label"
-                  >Dirección de email<span style="color: red">*</span></label
-                >
-                <input
-                  type="mail"
-                  formControlName="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Ingrese su direccion de email"
-                />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card h-100 mb-3">
+                <div class="card-body">
+                    <form @(ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+                        <div *ngIf="successMessage" class="alert alert-success">
+                            {{ successMessage }}
+                        </div>
+                        <div *ngIf="errorMessage" class="alert alert-danger">
+                            {{ errorMessage }}
+                            <div *ngIf="createForm.controls['confirmpass']?.errors?.['notSame'] && createForm.controls['confirmpass']?.touched" class="text-danger">
+                                Las contraseñas no coinciden.
+                            </div>
+                        </div>
+                        <p style="color: rgb(19, 19, 103)">
+                            <strong>Información Personal</strong>
+                        </p>
 
-                @if (Email?.errors && Email?.touched) { @if
-                (Email?.hasError('required')) {
-                <p class="text-danger">
-                  Completar la direccion de email es obligatorio.
-                </p>
-                } @else if (Email?.hasError('email')) {
-                <p class="text-danger">
-                  La direccion ingresada no es una direccion de correo valida.
-                </p>
-                } }
-              </div>
-              <p style="color: rgb(19, 19, 103)">
-                <strong>Información de inicio de sesión</strong>
-              </p>
-              <div class="row">
-                <div class="col">
-                  <div class="form-text">
-                    <label for="InputPassword" class="form-label"
-                      >Contraseña<span style="color: red">*</span></label
-                    >
-                    <input
-                      type="password"
-                      formControlName="password"
-                      class="form-control"
-                      placeholder="Por favor ingrese su contraseña"
-                    />
-                    @if (Password?.errors && Password?.touched) { @if
-                    (Password?.hasError('required')) {
-                    <p class="text-danger">
-                      Completar su contraseña es obligatorio.
-                    </p>
-                    } @else if (Password?.hasError('minlength')) {
-                    <p class="text-danger">
-                      La contraseña debe tener un minimo de 8 caracteres.
-                    </p>
-                    } }
-                    <span id="mensajeErrorPassword" style="color: red"></span>
-                  </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario<span style="color: red">*</span></label>
+                            <input type="text" id="username" name="username" ngModel required minlength="3" maxlength="20" pattern="^[a-zA-Z0-9]+$" class="form-control" placeholder="Ingrese su nombre de usuario">
+                            <div *ngIf="createForm.controls['username']?.errors && createForm.controls['username']?.touched">
+                                <div *ngIf="createForm.controls['username']?.hasError('required')" class="text-danger">
+                                    Completar nombre de usuario es obligatorio.
+                                </div>
+                                <div *ngIf="createForm.controls['username']?.hasError('minlength')" class="text-danger">
+                                    El nombre de usuario debe tener un mínimo de 3 caracteres.
+                                </div>
+                                <div *ngIf="createForm.controls['username']?.hasError('maxlength')" class="text-danger">
+                                    El nombre de usuario debe tener un máximo de 20 caracteres.
+                                </div>
+                                <div *ngIf="createForm.controls['username']?.hasError('pattern')" class="text-danger">
+                                    El nombre de usuario debe contener solo caracteres alfanuméricos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="first_name" class="form-label">Nombre<span style="color: red">*</span></label>
+                                <input type="text" id="first_name" name="first_name" ngModel required minlength="2" maxlength="30" pattern="^[a-zA-Z]+$" class="form-control" placeholder="Ingrese su nombre">
+                                <div *ngIf="createForm.controls['first_name']?.errors && createForm.controls['first_name']?.touched">
+                                    <div *ngIf="createForm.controls['first_name']?.hasError('required')" class="text-danger">
+                                        Completar nombre es obligatorio.
+                                    </div>
+                                    <div *ngIf="createForm.controls['first_name']?.hasError('minlength')" class="text-danger">
+                                        El nombre debe tener un mínimo de 2 caracteres.
+                                    </div>
+                                    <div *ngIf="createForm.controls['first_name']?.hasError('maxlength')" class="text-danger">
+                                        El nombre debe tener un máximo de 30 caracteres.
+                                    </div>
+                                    <div *ngIf="createForm.controls['first_name']?.hasError('pattern')" class="text-danger">
+                                        El nombre debe contener solo caracteres alfabéticos.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="last_name" class="form-label">Apellido<span style="color: red">*</span></label>
+                                <input type="text" id="last_name" name="last_name" ngModel required minlength="2" maxlength="35" pattern="^[a-zA-Z]+$" class="form-control" placeholder="Ingrese su apellido">
+                                <div *ngIf="createForm.controls['last_name']?.errors && createForm.controls['last_name']?.touched">
+                                    <div *ngIf="createForm.controls['last_name']?.hasError('required')" class="text-danger">
+                                        Completar apellido es obligatorio.
+                                    </div>
+                                    <div *ngIf="createForm.controls['last_name']?.hasError('minlength')" class="text-danger">
+                                        El apellido debe tener un mínimo de 2 caracteres.
+                                    </div>
+                                    <div *ngIf="createForm.controls['last_name']?.hasError('maxlength')" class="text-danger">
+                                        El apellido debe tener un máximo de 35 caracteres.
+                                    </div>
+                                    <div *ngIf="createForm.controls['last_name']?.hasError('pattern')" class="text-danger">
+                                        El apellido debe contener solo caracteres alfabéticos.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dni" class="form-label">Número de DNI<span style="color: red">*</span></label>
+                            <input type="text" id="dni" name="dni" ngModel required minlength="6" maxlength="10" pattern="^[0-9]+$" class="form-control" placeholder="Ingrese su número de documento">
+                            <div *ngIf="createForm.controls['dni']?.errors && createForm.controls['dni']?.touched">
+                                <div *ngIf="createForm.controls['dni']?.hasError('required')" class="text-danger">
+                                    Completar el número de DNI es obligatorio.
+                                </div>
+                                <div *ngIf="createForm.controls['dni']?.hasError('minlength')" class="text-danger">
+                                    El número de DNI debe tener un mínimo de 6 caracteres.
+                                </div>
+                                <div *ngIf="createForm.controls['dni']?.hasError('maxlength')" class="text-danger">
+                                    El número de DNI debe tener un máximo de 10 caracteres.
+                                </div>
+                                <div *ngIf="createForm.controls['dni']?.hasError('pattern')" class="text-danger">
+                                    El DNI debe contener solo caracteres numéricos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Dirección de email<span style="color: red">*</span></label>
+                            <input type="email" id="email" name="email" ngModel required email class="form-control" placeholder="Ingrese su dirección de email">
+                            <div *ngIf="createForm.controls['email']?.errors && createForm.controls['email']?.touched">
+                                <div *ngIf="createForm.controls['email']?.hasError('required')" class="text-danger">
+                                    Completar la dirección de email es obligatorio.
+                                </div>
+                                <div *ngIf="createForm.controls['email']?.hasError('email')" class="text-danger">
+                                    La dirección ingresada no es una dirección de correo válida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="color: rgb(19, 19, 103)">
+                            <strong>Información de inicio de sesión</strong>
+                        </p>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-text">
+                                    <label for="password" class="form-label">Contraseña<span style="color: red">*</span></label>
+                                    <input type="password" id="password" name="password" ngModel required minlength="8" class="form-control" placeholder="Por favor ingrese su contraseña">
+                                    <div *ngIf="createForm.controls['password']?.errors && createForm.controls['password']?.touched">
+                                        <div *ngIf="createForm.controls['password']?.hasError('required')" class="text-danger">
+                                            Completar su contraseña es obligatorio.
+                                        </div>
+                                        <div *ngIf="createForm.controls['password']?.hasError('minlength')" class="text-danger">
+                                            La contraseña debe tener un mínimo de 8 caracteres.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="confirmpass" class="form-label">Confirme contraseña<span style="color: red">*</span></label>
+                                <input type="password" id="confirmpass" name="confirmpass" ngModel required minlength="8" class="form-control" placeholder="Por favor reingrese su contraseña">
+                                <div *ngIf="createForm.controls['confirmpass']?.errors && createForm.controls['confirmpass']?.touched">
+                                    <div *ngIf="createForm.controls['confirmpass']?.hasError('required')" class="text-danger">
+                                        Completar la contraseña es obligatorio.
+                                    </div>
+                                    <div *ngIf="createForm.controls['confirmpass']?.hasError('minlength')" class="text-danger">
+                                        La contraseña debe tener un mínimo de 8 caracteres.
+                                    </div>
+                                </div>
+                                <div *ngIf="createForm.controls['password'].value !== createForm.controls['confirmpass'].value && createForm.controls['confirmpass']?.touched" class="text-danger">
+                                    Las contraseñas no coinciden.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="newsletter" name="newsletter" ngModel class="form-check-input">
+                            <label class="form-check-label" for="newsletter">Suscribirse al boletín de novedades</label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <p>
+                                <strong><a href="../" style="color: rgb(19, 19, 103)">Volver atrás</a></strong>
+                            </p>
+                        </div>
+                    </form>
                 </div>
-                <div class="col">
-                  <label for="Inputconfirmpass" class="form-label">
-                    Confirme contraseña<span style="color: red">*</span>
-                  </label>
-                  <input
-                    type="password"
-                    formControlName="confirmpass"
-                    class="form-control"
-                    placeholder="Por favor reingrese su contraseña"
-                    (focus)="ConfirmPassMsg($event)"
-                    (blur)="showConfirmPassMessage = false"
-                  />
-                  @if (ConfirmPass?.errors && ConfirmPass?.touched) { @if
-                  (ConfirmPass?.hasError('required')) {
-                  <p class="text-danger">
-                    Completar la contraseña es obligatorio.
-                  </p>
-                  } @else if (ConfirmPass?.hasError('minlength')) {
-                  <p class="text-danger">
-                    La contraseña debe tener un minimo de 8 caracteres.
-                  </p>
-                  } }
-                  <div
-                    [hidden]="!showConfirmPassMessage"
-                    class="alert alert-warning"
-                  >
-                    Recuerda que las contraseñas deben ser iguales.
-                  </div>
-                </div>
-              </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="Check" />
-                <label class="form-check-label" for="Check"
-                  >Suscribirse al boletín de novedades</label
-                >
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">
-                  <!-- routerLink="./app-socialnet" -->
-                  Enviar
-                </button>
-                <p>
-                  <strong
-                    ><a href="../" style="color: rgb(19, 19, 103)"
-                      >Volver atrás</a
-                    ></strong
-                  >
-                </p>
-                <label></label>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
