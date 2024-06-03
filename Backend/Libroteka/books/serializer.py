@@ -96,7 +96,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserLibrotekaSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'dni']  # Agrega aquí los campos adicionales si los necesitas
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'dni'] 
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -117,7 +117,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'], 
             email=validated_data['email'], 
             password=validated_data['password'],
-            dni=validated_data.get('dni')  # Asegúrate de que dni sea opcional y esté correctamente manejado
+            dni=validated_data.get('dni') 
         )
         return user
          
