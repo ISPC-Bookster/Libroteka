@@ -9,7 +9,7 @@ import { Book } from './cart.service'; // Import the Book interface from the car
 })
 export class BookService {
 
-  private apiUrl = 'http://your-api-url/books'; // Replace with your API URL
+  private apiUrl = 'http://localhost:8000/api/book'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
