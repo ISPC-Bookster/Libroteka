@@ -2,8 +2,10 @@ from rest_framework import serializers
 from .models import Author, Editorial, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from .models import UsersLibroteka
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -138,3 +140,17 @@ class UsersLibrotekaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         return super().create(validated_data)
+    
+
+# @csrf_exempt
+# def login_view(request):
+#     if request.method == 'POST':
+#         data = JSONParser().parse(request)
+#         serializer = LoginSerializer(data=data)
+        
+#         if serializer.is_valid():
+#             user = serializer.validated_data['user']
+#             login(request, user)
+#             return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
+#         return JsonResponse(serializer.errors, status=400)
+#     return JsonResponse({'message': 'Method not allowed'}, status=405)
