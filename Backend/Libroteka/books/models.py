@@ -74,7 +74,6 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name
-    
 class Book(models.Model):
 
     id_Book = models.AutoField(primary_key=True)
@@ -91,11 +90,12 @@ class Book(models.Model):
         verbose_name = "Libro"
         verbose_name_plural = "Libros"
 
-    def __unicode__(self):
-        return self.title
+        def __unicode__(self):
+            return self.title
 
-    def __str__(self):
-        return self.title
+        def __str__(self):
+            return self.title
+        
     
 class OrderStatus(models.Model):
     class Status(models.TextChoices):
@@ -146,3 +146,21 @@ class Order(models.Model):
         return self.id_Order
     
 
+
+class UsersLibroteka(models.Model):
+    username = models.CharField(max_length=30, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=35)
+    dni = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')], unique=True)
+    email = models.EmailField(primary_key=True, unique=True)
+    password = models.CharField(max_length=128)
+
+    
+    class Meta:
+        db_table= 'UsersLibroteka'
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
+
+        def __str__(self):
+            return f"{self.first_name} {self.last_name} ({self.username})"
+    
