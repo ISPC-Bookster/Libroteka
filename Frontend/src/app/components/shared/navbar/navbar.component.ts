@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService, Book } from '../../../services/cart.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   cartItems: Book[] = [];
   isCartVisible: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(cartItems => {
@@ -33,6 +33,6 @@ export class NavbarComponent implements OnInit {
   }
 
   proceedToCheckout(): void {
-    console.log('Proceeding to checkout...');
+    this.router.navigate(['/pagos']);
   }
 }
