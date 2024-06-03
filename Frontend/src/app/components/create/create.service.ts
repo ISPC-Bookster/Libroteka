@@ -9,9 +9,9 @@ export class CreateService {
   constructor(private http: HttpClient) { }
 
   registerUser(userData: any): Observable<any> {
-    return this.http.put('http://127.0.0.1:8000/api/users/', userData);
+    return this.http.post('http://127.0.0.1:8000/api/users/', userData);
   }
   getUsers(): Observable<any> {
-    return this.http.get('http://127.0.0.1:8000/api/users');
+    return this.http.get('http://127.0.0.1:8000/api/users/');
   }
 }

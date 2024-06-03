@@ -113,29 +113,29 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="Inputidentification" class="form-label"
+                  <label for="Inputdni" class="form-label"
                     >Número de DNI<span style="color: red">*</span></label
                   >
                   <input
                     type="text"
-                    formControlName="identification"
+                    formControlName="dni"
                     class="form-control"
                     placeholder="Ingrese su numero de documento"
                   />
-                  @if (Identification?.errors && Identification?.touched) { @if
-                  (Identification?.hasError('required')) {
+                  @if (dni?.errors && dni?.touched) { @if
+                  (dni?.hasError('required')) {
                   <p class="text-danger">
                     Completar el numero de DNI es obligatorio.
                   </p>
-                  } @else if (Identification?.hasError('minlength')) {
+                  } @else if (dni?.hasError('minlength')) {
                   <p class="text-danger">
                     El numero de DNI debe tener un minimo de 6 caracteres.
                   </p>
-                  } @else if (Identification?.hasError('maxlength')) {
+                  } @else if (dni?.hasError('maxlength')) {
                   <p class="text-danger">
                     El numero de DNI debe tener un maximo de 6 caracteres.
                   </p>
-                  } @else if (Identification?.hasError('pattern')) {
+                  } @else if (dni?.hasError('pattern')) {
                   <p class="text-danger">
                     El DNI debe contener solo caracteres numericos.
                   </p>

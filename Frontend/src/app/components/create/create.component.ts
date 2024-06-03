@@ -1,40 +1,3 @@
-// import { Component } from '@angular/core';
-// import { Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
-// import { RouterLink, RouterOutlet } from '@angular/router';
-// import { CommonModule } from '@angular/common';
-// import { UsersLibrotekaService } from '../../services/users-libroteka.service';
-// @Component({
-//   selector: 'app-create',
-//   standalone: true,
-//   imports: [ReactiveFormsModule, RouterLink, RouterOutlet, CommonModule],
-//   templateUrl: './create.component.html',
-//   styleUrls: ['./create.component.css']
-// })
-// export class CreateComponent {
-//   successMessage: string = '';
-//   errorMessage: string = '';
-//   form!: FormGroup;
-
-
-//   constructor(private usersLibrotekaService: UsersLibrotekaService) {}
-
-//   onSubmit(form: any) {
-//     if (form.valid) {
-//       this.usersLibrotekaService.registerUser(form.value).subscribe(
-//         response => {
-//           this.successMessage = 'Usuario registrado exitosamente!';
-//           form.reset();
-//         },
-//         error => {
-//           this.errorMessage = 'Error al registrar usuario';
-//         }
-//       );
-//     } else {
-//       this.errorMessage = 'Por favor, complete todos los campos requeridos correctamente.';
-//     }
-//   }
-// }
-
 import { Component } from '@angular/core';
 import { Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -85,7 +48,7 @@ export class CreateComponent {
             Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s']+/),
           ],
         ],
-        identification: [
+        dni: [
           '',
           [
             Validators.required,
@@ -110,8 +73,8 @@ export class CreateComponent {
   get LastName() {
     return this.form.get('last_name');
   }
-  get Identification() {
-    return this.form.get('identification');
+  get dni() {
+    return this.form.get('dni');
   }
   get Email() {
     return this.form.get('email');
