@@ -1,27 +1,19 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-interface Book {
-  id_Book: number;
-  title: string;
-  author: string;
-  genre: string;
-  editorial: string;
-  description: string;
-  price: number;
-  stock: number;
-}
+import { Book } from './cart.service'; // Import the Book interface from the cart service
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-    private apiUrl = 'http://localhost:8000/book'; 
+
+  private apiUrl = 'http://your-api-url/books'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/libros/`);
+    return this.http.get<Book[]>(this.apiUrl);
   }
 }

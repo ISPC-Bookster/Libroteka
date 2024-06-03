@@ -31,9 +31,9 @@
             <div class="col d-flex justify-content-center mb-4" *ngFor="let book of books">
               <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem">
                 <h5 class="card-title pt-2 text-center text-primary bg-dark">
-                  <span class="libro-gris">Libro<br />{{ book.title }}</span>
+                  <span class="libro-gris">{{ book.id_Author?.name }}<br />{{ book.title }}</span>
                 </h5>
-                <a href="#"><img src="https://elplacerdelalectura.com/wp-content/uploads/2023/04/image-39.png.webp" class="card-img-top" alt="libro" /></a>
+                <a href="#"><img src="../../../assets/images/id_{{ book.id_Book }}.webp" class="card-img-top" alt="libro" /></a>
                 <div class="card-body">
                   <p class="card-text text-white-50 description">
                     {{ book.description }}
@@ -43,12 +43,14 @@
                     <span class="precio">{{ book.price }}</span>
                   </h5>
                   <div class="d-grid gap-2">
-                    <button class="btn btn-primary button">Añadir a Carrito</button>
+                    <button class="btn btn-primary button" (click)="addCartItem(book)">Añadir a Carrito</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
+          
     </main>
 
     <section>
