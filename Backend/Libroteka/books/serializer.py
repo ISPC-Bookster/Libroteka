@@ -5,8 +5,6 @@ from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
-from .models import UsersLibroteka
-
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
@@ -122,7 +120,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             dni=validated_data.get('dni') 
         )
         return user
-         
+
+
 class RoleSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Role
@@ -142,6 +141,14 @@ class UsersLibrotekaSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
     
 
+
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+        
 # @csrf_exempt
 # def login_view(request):
 #     if request.method == 'POST':
