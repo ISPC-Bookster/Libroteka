@@ -81,7 +81,7 @@
           <div class="cart-item-quantity">Cantidad: {{ item.quantity }}</div>
         </div>
         <div *ngIf="cartItems.length === 0" class="cart-empty">
-          Your cart is empty.
+          El carrito está vacío.
         </div>
         <button type="button" class="btn btn-danger m-2" (click)="clearCart()">Limpiar carrito</button>
         <button type="button" class="btn btn-success m-2" (click)="proceedToCheckout()">Iniciar compra</button>
