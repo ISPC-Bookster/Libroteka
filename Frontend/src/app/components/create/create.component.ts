@@ -48,7 +48,7 @@ export class CreateComponent {
             Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s']+/),
           ],
         ],
-        identification: [
+        dni: [
           '',
           [
             Validators.required,
@@ -73,8 +73,8 @@ export class CreateComponent {
   get LastName() {
     return this.form.get('last_name');
   }
-  get Identification() {
-    return this.form.get('identification');
+  get dni() {
+    return this.form.get('dni');
   }
   get Email() {
     return this.form.get('email');
