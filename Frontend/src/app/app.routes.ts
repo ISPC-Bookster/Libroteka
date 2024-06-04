@@ -9,22 +9,24 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MasVendidosComponent } from './components/mas-vendidos/mas-vendidos.component';
+import { authGuard } from './guards/auth-guard';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
+
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent },
-    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },
-    {path: 'catalogo', component: CatalogoComponent },
-    {path: 'home', component: LandingComponent},
+    {path: 'landing', component: LandingComponent},
+    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent}, 
+    {path: 'catalogo', component: CatalogoComponent},
     {path: 'contacto', component: ContactoComponent},
-    {path: 'socialnet', component: SocialnetComponent },
+    {path: 'socialnet', component: SocialnetComponent},
     {path: 'sobre-nosotros', component: SobreNosotrosComponent},
     {path: 'create', component: CreateComponent },
-    {path: 'login', component:  LoginComponent},
-    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },
-    {path: 'dashboard', component: DashboardComponent},
+    {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
     {path: 'mas-vendidos', component:MasVendidosComponent },
-    {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: '**', redirectTo: '/home', pathMatch: 'full'},//reemplazar por componente: 404, page not fount libroteka
-
+    {path: 'book/:bookId', component: BookDetailsComponent},
+    {path: 'pagos', component: PaymentGatewayComponent, canActivate:[authGuard]},
+    {path: '', redirectTo: '/landing', pathMatch: 'full'},
+    {path: '**',redirectTo: '/landing', pathMatch: 'full'},
 ];
-
