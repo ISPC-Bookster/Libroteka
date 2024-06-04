@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Book } from './cart.service';
 export interface Order {
-  user_email: string;
-  books: any[];
+  id_User: string;
+  id_Order_Status: number;
+  date: Date;
+  books: any;
   total: number;
   books_amount: number;
 }
@@ -13,7 +15,7 @@ export interface Order {
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8000/api/book/crear-orden/';
+  private apiUrl = 'http://localhost:8000/api/orders/';
 
   constructor(private http: HttpClient) {}
 

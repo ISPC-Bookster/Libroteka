@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CartService, Book } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-payment-gateway',
@@ -30,7 +31,7 @@ export class PaymentGatewayComponent implements OnInit {
   totalAmount: number = 0;
   showPaymentForm: boolean = false;
 
-  constructor(private cartService: CartService,private orderService: OrderService) {}
+  constructor(private cartService: CartService, private orderService: OrderService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(cartItems => {
@@ -48,17 +49,27 @@ export class PaymentGatewayComponent implements OnInit {
   }
 
   onPaymentSubmit() {
-    const orderData = {
-      user_email: 'user@example.com', // Replace with actual user email
-      books: this.cartItems,
-      total: this.totalAmount,
-      books_amount: this.cartItems.reduce((total, item) => total + (item.quantity || 1), 0)
-    };
+    this.authService.currentUserEmail.subscribe(email => {
+      if (email !== null) {
+        // const {quantity, ...validCart}=this.cartItems
+        const validCart = this.cartItems.map(({ quantity, ...validProps }) => validProps);
+        const orderData = {
+          id_User: email,
+          id_Order_Status: 1,
+          date: new Date(),
+          books: JSON.stringify(validCart),
+          total: this.totalAmount,
+          books_amount: this.cartItems.reduce((total, item) => total + (item.quantity || 1), 0)
+        };
 
-    this.orderService.createOrder(orderData).subscribe(response => {
-      console.log('Order created successfully:', response);
-    }, error => {
-      console.error('Error creating order:', error);
+        this.orderService.createOrder(orderData).subscribe(response => {
+          console.log('Order created successfully:', response);
+        }, error => {
+          console.error('Error creating order:', error);
+        });
+      } else {
+        console.error('Error: Email is null, order not created');
+      }
     });
   }
 }

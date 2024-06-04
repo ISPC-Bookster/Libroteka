@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BusquedaPersonalizadaComponent } from './components/busqueda-personalizada/busqueda-personalizada.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     BusquedaPersonalizadaComponent,
     BookDetailsComponent,
+    FormsModule,
     HttpClientModule,
     RouterModule
   ],

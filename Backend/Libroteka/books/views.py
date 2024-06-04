@@ -7,14 +7,19 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework.response import Response
 from knox.models import AuthToken
-from knox.views import LoginView as KnoxLoginView
-from django.contrib.auth import login
+# from knox.views import LoginView as KnoxLoginView
+from django.contrib.auth import login, authenticate
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import check_password
+from django.utils import timezone
+from django.shortcuts import get_object_or_404
+import json
 
 from .models import Author, Editorial, User, Genre, Order, OrderStatus, Book, Role, UsersLibroteka
 from .serializer import (
     AuthorSerializer, EditorialSerializer, UserSerializer, RegisterSerializer, 
-    GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer
+    GenreSerializer, BookSerializer, RoleSerializer, UsersLibrotekaSerializer, LoginSerializer, OrderSerializer
 )
 
 # ViewSets for different models
@@ -108,17 +113,62 @@ class RegisterAPI(generics.GenericAPIView):
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
         })
-
+class OrdersViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+class LoginAPI(APIView):
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
+            try:
+                user = UsersLibroteka.objects.get(email=email)
+                if check_password(password, user.password):
+                    return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+                else:
+                    return Response({"message": "Invalid password"}, status=status.HTTP_401_UNAUTHORIZED)
+            except UsersLibroteka.DoesNotExist:
+                return Response({"message": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Login API
-class LoginAPI(KnoxLoginView):
-    permission_classes = [permissions.AllowAny]
+# @csrf_exempt
 
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super().post(request, format=None)
+# class LoginAPI(KnoxLoginView):
+#     permission_classes = [permissions.AllowAny]
+
+    # def post(self, request, format=None):
+    #     serializer = AuthTokenSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     user = serializer.validated_data['user']
+    #     login(request, user)
+    #     return super().post(request, format=None)
+# ---
+    # def post(self, request, format=None):
+    #     serializer = AuthTokenSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     user = serializer.validated_data['user']
+    #     login(request, user)
+    #     return super(LoginAPI, self).post(request, format=None)
+    # def login_view(request):
+    #     if request.method == 'POST':
+    #         data = json.loads(request.body)
+    #         email = data.get('email')
+    #         password = data.get('password')
+# --       
+    #     try:
+    #         user = User.objects.get(email=email)
+    #     except User.DoesNotExist:
+    #         return JsonResponse({'message': 'Invalid email or password'}, status=401)
+        
+    #     user = authenticate(username=user.username, password=password)
+        
+    #     if user is not None:
+    #         login(request, user)
+    #         return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
+    #     else:
+    #         return JsonResponse({'message': 'Invalid email or password'}, status=401)
+    #     return JsonResponse({'message': 'Method not allowed'}, status=405)
 
 class RoleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Role.objects.all()
@@ -144,25 +194,60 @@ class UsersLibrotekaListCreate(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
 class CreateOrderView(APIView):
     def post(self, request):
-        user_email = request.data.get('user_email')
-        user = UsersLibroteka.objects.get(email=user_email)
-        
-        order_status = OrderStatus.objects.get(status=OrderStatus.Status.PENDING)
+        user_email = request.data.get('id_User')
+        user = get_object_or_404(UsersLibroteka, email=user_email)
+        try:
+            user = UsersLibroteka.objects.get(email=user_email)
+        except UsersLibroteka.DoesNotExist:
+            # logger.error(f"User {user_email} does not exist.")
+            return Response({"message": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        order_status_str = request.data.get('id_Order_Status')
+        try:
+            order_status = OrderStatus.objects.get(status=order_status_str)
+        except OrderStatus.DoesNotExist:
+            # logger.error(f"Order status {order_status_str} does not exist.")
+            return Response({"message": "Order status does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
         data = {
             'id_Order_Status': order_status.id_Order_Status,
             'id_User': user.email,
-            'date': timezone.now(),
+            'date': request.data.get('date'),
             'books': request.data.get('books'),
             'total': request.data.get('total'),
             'books_amount': request.data.get('books_amount')
         }
-        
+
         serializer = OrderSerializer(data=data)
-        
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+
+        # logger.error(f"Serializer errors: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @csrf_exempt
+# def login_view(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         email = data.get('email')
+#         password = data.get('password')
+        
+#         try:
+#             user = User.objects.get(email=email)
+#         except User.DoesNotExist:
+#             return JsonResponse({'message': 'Invalid email or password'}, status=401)
+        
+#         user = authenticate(username=user.username, password=password)
+        
+#         if user is not None:
+#             login(request, user)
+#             return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
+#         else:
+#             return JsonResponse({'message': 'Invalid email or password'}, status=401)
+#     return JsonResponse({'message': 'Method not allowed'}, status=405)
+    

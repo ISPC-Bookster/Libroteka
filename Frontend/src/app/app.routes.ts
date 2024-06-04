@@ -26,7 +26,7 @@ export const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
     {path: 'mas-vendidos', component:MasVendidosComponent },
     {path: 'book/:bookId', component: BookDetailsComponent},
-    {path: 'pagos', component: PaymentGatewayComponent },
+    {path: 'pagos', component: PaymentGatewayComponent, canActivate:[authGuard]},
     {path: '', redirectTo: '/landing', pathMatch: 'full'},
     {path: '**',redirectTo: '/landing', pathMatch: 'full'},
 ];

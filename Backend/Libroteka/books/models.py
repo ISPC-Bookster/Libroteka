@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.validators import RegexValidator
 from jsonfield import JSONField
+import json
 from django.conf import settings
 
 class User(AbstractUser):
@@ -148,10 +149,14 @@ class Order(models.Model):
     id_Order_Status = models.ForeignKey(OrderStatus, to_field='id_Order_Status', on_delete=models.CASCADE)   
     id_User = models.ForeignKey(UsersLibroteka, to_field='email', null=True, blank=True, on_delete=models.CASCADE)
     date = models.DateTimeField()
-    books = JSONField(default=list)
+    books = models.JSONField(default=list)
     total = models.DecimalField(blank=False, decimal_places=2, max_digits=10)
     books_amount = models.IntegerField(blank=False)
-
+    
+    # def save(self, *args, **kwargs):
+    #     # Serialize the list of books to JSON
+    #     self.books = json.dumps(list(self.books))
+    #     super().save(*args, **kwargs)
     class Meta:
         db_table= 'Order'
         verbose_name = "Orden"
