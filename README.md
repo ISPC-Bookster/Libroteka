@@ -30,7 +30,7 @@ Puntos claves:
 - password: libroteka
 
 ## Librerías
-- FrontEnd: fortawesome, bootstrap, rxjs, smtpjs, tslib, zone.js
+- FrontEnd: fortawesome, nodemailer, bootstrap, rxjs, smtpjs, tslib, zone.js
 - BackEnd: django, djangorestframework, django-cors-headers, Pillow, jsonfield, mysqlclient
 
 ## Correr localmente
