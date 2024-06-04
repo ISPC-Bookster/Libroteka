@@ -30,8 +30,8 @@ Puntos claves:
 - password: libroteka
 
 ## Librerías
-- FrontEnd:
-- BackEnd: django djangorestframework django-cors-headers Pillow jsonfield mysqlclient
+- FrontEnd: fortawesome, bootstrap, rxjs, smtpjs, tslib, zone.js
+- BackEnd: django, djangorestframework, django-cors-headers, Pillow, jsonfield, mysqlclient
 
 ## Correr localmente
 <table>
