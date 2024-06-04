@@ -10,6 +10,7 @@ Dependencies:
 - Angular: "^17"
 - Python: "^3.8"
 - Django: "^4.2"
+- SQLITE3: Incluido en Django
 
 Puntos claves:
 - Formulario IEEE830: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830)
