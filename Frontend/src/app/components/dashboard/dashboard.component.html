@@ -1,51 +1,37 @@
 <!-- 1era fila -->
 <div class="container-fluid d-flex flex-wrap justify-content-center">
-    <div class="card m-2" style="width: 30%;">
-        <div class="card-header">Resumen de Compras</div>
-        <div class="card-body">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Orden #1234 (Total: $45000)
-                    <ul class="list-group" style="padding: 5%">
-                        <li>El Señor de los Anillos - $25000</li>
-                        <li>Cien Años de Soledad - $20000</li>
-                    </ul>
-                </li>
+   <h1 class="card-header m-3">Resumen de Compras</h1>
+   <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-3 mb-3" *ngFor="let order of recentPurchases">
+        <div class="card">
+          <div class="card-header">
+            Orden #{{ order.id_Order }} (Total: ${{ order.total }})
+          </div>
+          <div class="card-body">
+            <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <strong>Libros:</strong>
+                <ul class="list-group" style="padding: 5%">
+                  <li *ngFor="let book of order.books">{{ book.title }} - ${{ book.price }}</li>
+                </ul>
+              </li>
             </ul>
-        </div>
-    </div>
-
-    <div class="card m-2" style="width: 30%;">
-        <div class="card-header">Estado del Envío</div>
-        <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item" style="padding: 5%">
-                    Orden #1234 - Enviado
-                    <br> Llegada estimada: 24 de Mayo, 2024
-                    <br>
-                    <a href=" " target="_blank">Track Package</a>
-                </li>
+              <li class="list-group-item">
+                <strong>Estado del Envío:</strong>
+                <br> Estado: {{ order.id_Order_Status }}
+                <br> Llegada estimada: {{ order.date | date: 'longDate' }}
+                <br>
+                <a href="#" target="_blank">Track Package</a>
+              </li>
             </ul>
+          </div>
         </div>
+      </div>
     </div>
-
-    <div class="card m-2" style="width: 30%;">
-        <div class="card-header">Historial de Compras</div>
-        <div class="card-body">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Orden #1234 (Total: $45000)
-                    <ul class="list-group" style="padding: 5%">
-                        <li>El Señor de los Anillos - $25000</li>
-                        <li>Cien Años de Soledad - $20000</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</div>
-
+  </div>
+  
 <!-- 2da fila -->
 
 <div class="container-fluid d-flex flex-wrap justify-content-center">

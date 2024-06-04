@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CartService, Book } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 import { AuthService } from '../../services/auth.service';
@@ -31,7 +31,7 @@ export class PaymentGatewayComponent implements OnInit {
   totalAmount: number = 0;
   showPaymentForm: boolean = false;
 
-  constructor(private cartService: CartService, private orderService: OrderService, private authService: AuthService) { }
+  constructor(private router: Router, private cartService: CartService, private orderService: OrderService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe(cartItems => {
@@ -51,11 +51,10 @@ export class PaymentGatewayComponent implements OnInit {
   onPaymentSubmit() {
     this.authService.currentUserEmail.subscribe(email => {
       if (email !== null) {
-        // const {quantity, ...validCart}=this.cartItems
         const validCart = this.cartItems.map(({ quantity, ...validProps }) => validProps);
         const orderData = {
           id_User: email,
-          id_Order_Status: 1,
+          id_Order_Status: 4,
           date: new Date(),
           books: JSON.stringify(validCart),
           total: this.totalAmount,
@@ -64,6 +63,8 @@ export class PaymentGatewayComponent implements OnInit {
 
         this.orderService.createOrder(orderData).subscribe(response => {
           console.log('Order created successfully:', response);
+          this.cartService.clearCart()
+          this.router.navigate(['/dashboard']); 
         }, error => {
           console.error('Error creating order:', error);
         });
