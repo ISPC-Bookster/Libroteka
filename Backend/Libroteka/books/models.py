@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.validators import RegexValidator
 from jsonfield import JSONField
+import json
 from django.conf import settings
 
 class User(AbstractUser):
@@ -123,28 +124,6 @@ class OrderStatus(models.Model):
     def __str__(self):
         return self.status
 
-class Order(models.Model):
-
-    id_Order = models.AutoField(primary_key=True)
-    id_Order_Status = models.ForeignKey(OrderStatus, to_field='id_Order_Status', on_delete=models.CASCADE)
-    # id_User = models.ForeignKey(settings.AUTH_USER_MODEL, to_field='email',  null=True, blank=True, on_delete=models.CASCADE)    
-    user = models.OneToOneField(User, on_delete=models.CASCADE,default=1)
-    date = models.DateTimeField()
-    books = JSONField(default=list)
-    total = models.DecimalField(blank=False, decimal_places=2, max_digits=10)
-    books_amount = models.IntegerField(blank=False)
-
-    class Meta:
-        db_table= 'Order'
-        verbose_name = "Orden"
-        verbose_name_plural = "Órdenes"
-
-    def __unicode__(self):
-        return self.id_Order
-
-    def __str__(self):
-        return self.id_Order
-    
 
 
 class UsersLibroteka(models.Model):
@@ -164,3 +143,27 @@ class UsersLibroteka(models.Model):
         def __str__(self):
             return f"{self.first_name} {self.last_name} ({self.username})"
     
+class Order(models.Model):
+
+    id_Order = models.AutoField(primary_key=True)
+    id_Order_Status = models.ForeignKey(OrderStatus, to_field='id_Order_Status', on_delete=models.CASCADE)   
+    id_User = models.ForeignKey(UsersLibroteka, to_field='email', null=True, blank=True, on_delete=models.CASCADE)
+    date = models.DateTimeField()
+    books = models.JSONField(default=list)
+    total = models.DecimalField(blank=False, decimal_places=2, max_digits=10)
+    books_amount = models.IntegerField(blank=False)
+    
+    # def save(self, *args, **kwargs):
+    #     # Serialize the list of books to JSON
+    #     self.books = json.dumps(list(self.books))
+    #     super().save(*args, **kwargs)
+    class Meta:
+        db_table= 'Order'
+        verbose_name = "Orden"
+        verbose_name_plural = "Órdenes"
+
+    def __unicode__(self):
+        return self.id_Order
+
+    def __str__(self):
+        return self.id_Order

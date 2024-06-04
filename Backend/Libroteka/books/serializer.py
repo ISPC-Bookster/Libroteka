@@ -143,12 +143,26 @@ class UsersLibrotekaSerializer(serializers.ModelSerializer):
 
 
 
-
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
 
-        
+
+class OrderSerializer(serializers.ModelSerializer):
+    # books = serializers.JSONField()
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+        # fields = ['id_Order_Status', 'id_User', 'date', 'books', 'total', 'books_amount']
+
+
+# class OrderSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Order
+#         fields = '__all__'
+
+
 # @csrf_exempt
 # def login_view(request):
 #     if request.method == 'POST':
@@ -161,3 +175,4 @@ class LoginSerializer(serializers.Serializer):
 #             return JsonResponse({'message': 'Login successful', 'user': {'username': user.username, 'email': user.email}})
 #         return JsonResponse(serializer.errors, status=400)
 #     return JsonResponse({'message': 'Method not allowed'}, status=405)
+    
