@@ -83,7 +83,9 @@ Go to the project directory
 Activate Virtual environment & install Libraries
 
 ```bash
-source backendLibroteka-env/bin/activate
+backendLibroteka-env/bin/activate # Windows users
+source backendLibroteka-env/bin/activate # Linux users
+
 ```
 ```bash
  cd Libroteka/Backend/Libroteka
