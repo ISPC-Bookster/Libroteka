@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MasVendidosComponent } from './components/mas-vendidos/mas-vendidos.component';
 import { authGuard } from './guards/auth-guard';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
     {path: 'mas-vendidos', component:MasVendidosComponent },
     {path: 'book/:bookId', component: BookDetailsComponent},
+    {path: 'pagos', component: PaymentGatewayComponent, canActivate:[authGuard]},
     {path: '', redirectTo: '/landing', pathMatch: 'full'},
     {path: '**',redirectTo: '/landing', pathMatch: 'full'},
 ];

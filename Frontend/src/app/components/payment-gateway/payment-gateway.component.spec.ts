@@ -1,18 +1,18 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { ContactoComponent } from './contacto.component';
+// import { PaymentGatewayComponent } from './payment-gateway.component';
 
-// describe('ContactoComponent', () => {
-//   let component: ContactoComponent;
-//   let fixture: ComponentFixture<ContactoComponent>;
+// describe('PaymentGatewayComponent', () => {
+//   let component: PaymentGatewayComponent;
+//   let fixture: ComponentFixture<PaymentGatewayComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       imports: [ContactoComponent]
+//       imports: [PaymentGatewayComponent]
 //     })
 //     .compileComponents();
     
-//     fixture = TestBed.createComponent(ContactoComponent);
+//     fixture = TestBed.createComponent(PaymentGatewayComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

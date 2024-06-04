@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
   }
 
   proceedToCheckout(): void {
-    console.log('Proceeding to checkout...');
+    this.router.navigate(['/pagos']);
   }
   logout(): void {
     this.authService.logout();

@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthGuardsService {
-  token = '';
+  token = 'token123';
 
   constructor() {}
   isAuth() {
-    const storedToken = localStorage.getItem('auth_token'); 
+    const storedToken = sessionStorage.getItem('token'); 
     this.token = storedToken || ''; 
     return this.token.length > 0;
   }

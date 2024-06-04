@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from .views import AuthorViewSet, BookViewSet, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet, LibrosView, LoginAPI
+from .views import AuthorViewSet, BookViewSet, OrdersViewSet, CreateOrderView, BusquedaLibrosView, EditorialViewSet, GenreViewSet,  BookViewSet, GenreViewSet, GetBooksByAuthorOrGenreOrTitleView, RegisterAPI,RoleRetrieveUpdateDestroyAPIView, RoleListCreateAPIView, UsersLibrotekaListCreate, UsersLibrotekaViewSet, LibrosView, LoginAPI
 
 
 
@@ -10,10 +10,12 @@ router = DefaultRouter()
 router.register(r'authors', AuthorViewSet)
 router.register(r'editorials', EditorialViewSet)
 router.register(r'genre', GenreViewSet)
-# router.register(r'orders', OrderViewSet)
-# router.register(r'ordersStatus', OrderStatusViewSet)
 router.register(r'book', BookViewSet)
 router.register(r'users', UsersLibrotekaViewSet)
+router.register(r'orders', OrdersViewSet)
+
+# router.register(r'ordersStatus', OrderStatusViewSet)
+# router.register(r'create-orders', CreateOrderView)
 
 urlpatterns = [
     path('registro/', RegisterAPI.as_view(), name='register'),
@@ -29,5 +31,8 @@ urlpatterns = [
     path('buscar-libros/', BusquedaLibrosView.as_view(), name='buscar_libros'),
     path('users/', UsersLibrotekaListCreate.as_view(), name='users-list-create'),
     path('libros/', LibrosView.as_view(), name='libros'),
+    path('create-orders/', CreateOrderView.as_view(), name='create-orders'),
+    # path('orders/', OrdersViewSet.as_view(), name='orders'),
+
     path('', include(router.urls)),
 ]
