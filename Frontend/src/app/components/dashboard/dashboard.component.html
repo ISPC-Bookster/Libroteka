@@ -20,7 +20,7 @@
             <ul class="list-group">
               <li class="list-group-item">
                 <strong>Estado del Envío:</strong>
-                <br> Estado: {{ order.id_Order_Status }}
+                <br> Estado: {{ getStatus(order.id_Order_Status) }}
                 <br> Llegada estimada: {{ order.date | date: 'longDate' }}
                 <br>
                 <a href="#" target="_blank">Track Package</a>

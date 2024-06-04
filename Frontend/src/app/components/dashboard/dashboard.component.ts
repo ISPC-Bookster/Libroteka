@@ -7,11 +7,11 @@ import { OrderService, Order } from '../../services/order.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   recentPurchases: Order[] = [];
-  shipmentStatus: any[] = []; 
+  shipmentStatus: any[] = [];
 
   constructor(private orderService: OrderService) {}
 
@@ -26,9 +26,26 @@ export class DashboardComponent implements OnInit {
         this.recentPurchases = data.filter((order) => order.id_User === email);
         console.log('Fetched orders:', this.recentPurchases);
       },
-      error => {
+      (error) => {
         console.error('Error fetching orders', error);
       }
     );
+  }
+
+  getStatus(status: number) {
+    switch (status) {
+      case 1:
+        return 'Pendiente';
+      case 2:
+        return 'Pagado';
+      case 4:
+        return 'Preparando';
+      case 5:
+        return 'Enviado';
+      case 6:
+        return 'Recibido';
+      default:
+        return 'Preparando';
+    }
   }
 }
