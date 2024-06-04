@@ -6,12 +6,12 @@ COPY Backend/ .
 
 RUN . backendLibroteka-env/bin/activate
 
-WORKDIR /app/Libroteka/Backend
-
 RUN pip install --upgrade pip
 
-RUN pip install -r requirements.txt
+# WORKDIR /app/Libroteka/Backend/Libroteka
+
+RUN pip install -r /app/Libroteka/requirements.txt
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "/app/Libroteka/manage.py", "runserver", "0.0.0.0:8000"]
