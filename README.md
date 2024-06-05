@@ -41,7 +41,7 @@ Puntos claves:
 Clone the project
 
 ```bash
-  git clone https://github.com/LibrotekaISPC2023/Libroteka
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
 ``` 
 
 Go to the project directory
@@ -71,7 +71,7 @@ Start the server
 Clone the project
 
 ```bash
-  git clone https://github.com/LibrotekaISPC2023/Libroteka
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
 ``` 
 
 Go to the project directory
@@ -102,4 +102,39 @@ Start the server
 </td>
 </tr>
 </table>
+
+<table>
+<tr>
+<th> Docker <br> (Optional) </th>
+<td>
+Clone the project
+
+```bash
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
+``` 
+
+Go to the project directory
+
+```bash
+  cd Frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Go back and Start the Docker Compose
+
+```bash
+  cd ..
+```
+```bash
+  sudo docker compose up --build
+```
+</td>
+</tr>
+</table>
+<table>
 
