@@ -1,46 +1,47 @@
 # Tecnicatura Superior en Desarrollo web y Aplicaciones Digitales
 ## Programación Web 1
 
-
 - Equipo: Bookster
 - Proyecto: Libroteka
 - Cohorte: 2023
-
 
 Dependencies: 
 - Node: "^18"
 - Angular: "^17"
 - Python: "^3.8"
 - Django: "^4.2"
+- SQLITE3: Incluido en Django
 
 Puntos claves:
-- Formulario IEEE830: https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830
-- Scrum - Registro de ceremonias: https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias
-- Historias de Usuario: https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario
-- Milestones: https://github.com/ISPC-Bookster/Libroteka/milestones
+- Formulario IEEE830: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Formulario-IEEE830)
+- Ceremonias - Scrum: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Scrum:-Registro-de-ceremonias)
+- Historias de Usuario: [Link](https://github.com/ISPC-Bookster/Libroteka/wiki/Historias-de-Usuario)
+- Milestones: [Link](https://github.com/ISPC-Bookster/Libroteka/milestones)
+- Branching Strategy:
 
-Credenciales django:
-user: superadmin
-password: libroteka
+| Branch	| Naming Convention |
+| -- | -- |
+| Master |	"main"
+| Desarrollo	| "dev"
+| Rama Integrantes | "iniciales-feature"
 
-Librerías: 
-pip install django djangorestframework django-cors-headers Pillow
-pip install jsonfield
+## Credenciales Django Admin
+- user: superadmin
+- password: libroteka
 
-## Run Locally
+## Librerías
+- FrontEnd: fortawesome, nodemailer, bootstrap, rxjs, smtpjs, tslib, zone.js
+- BackEnd: django, djangorestframework, django-cors-headers, Pillow, jsonfield, mysqlclient
+
+## Correr localmente
 <table>
 <tr>
-<th> Frontend </th>
-<th> Backend </th>
-</tr>
-<tr>
-
+<th> FrontEnd </th>
 <td>
-
 Clone the project
 
 ```bash
-  git clone https://github.com/LibrotekaISPC2023/Libroteka
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
 ``` 
 
 Go to the project directory
@@ -58,17 +59,19 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
-
-
 </td>
+</tr>
+</table>
+<table>
+<tr>
+<th> BackEnd </th>
 <td>
-
 Clone the project
 
 ```bash
-  git clone https://github.com/LibrotekaISPC2023/Libroteka
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
 ``` 
 
 Go to the project directory
@@ -77,13 +80,18 @@ Go to the project directory
   cd Backend/Libroteka
 ```
 
-Activate Virtual environment & install Django
+Activate Virtual environment & install Libraries
 
 ```bash
-  source backendLibroteka-env/bin/activate
+backendLibroteka-env/bin/activate # Windows users
+source backendLibroteka-env/bin/activate # Linux users
+
 ```
 ```bash
-  pip install django==4.2
+ cd Libroteka/Backend/Libroteka
+```
+```bash
+  pip install -r requirements.txt
 ```
 
 Start the server
@@ -91,7 +99,42 @@ Start the server
 ```bash
   python manage.py runserver
 ```
-
 </td>
 </tr>
 </table>
+
+<table>
+<tr>
+<th> Docker <br> (Optional) </th>
+<td>
+Clone the project
+
+```bash
+  git clone https://github.com/LibrotekaISPC2023/Libroteka.git
+``` 
+
+Go to the project directory
+
+```bash
+  cd Frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Go back and Start the Docker Compose
+
+```bash
+  cd ..
+```
+```bash
+  sudo docker compose up --build
+```
+</td>
+</tr>
+</table>
+<table>
+
