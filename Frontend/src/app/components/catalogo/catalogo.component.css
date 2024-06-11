@@ -2,10 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: #e7e0d8 ;
+
 }
 
 body {
-    background: #f7f6ed;
+    background: #e7e0d8 ;
     font-family: 'Open Sans', sans-serif;
 }
 

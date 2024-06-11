@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Libroteka}/Backend/Libroteka/db.sqlite3",
+            "name": "libroteka"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
