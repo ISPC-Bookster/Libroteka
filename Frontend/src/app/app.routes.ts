@@ -12,21 +12,30 @@ import { MasVendidosComponent } from './components/mas-vendidos/mas-vendidos.com
 import { authGuard } from './guards/auth-guard';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
-
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
-    {path: 'login', component: LoginComponent },
-    {path: 'landing', component: LandingComponent},
-    {path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent}, 
-    {path: 'catalogo', component: CatalogoComponent},
-    {path: 'contacto', component: ContactoComponent},
-    {path: 'socialnet', component: SocialnetComponent},
-    {path: 'sobre-nosotros', component: SobreNosotrosComponent},
-    {path: 'create', component: CreateComponent },
-    {path: 'dashboard', component: DashboardComponent,canActivate:[authGuard]},
-    {path: 'mas-vendidos', component:MasVendidosComponent },
-    {path: 'book/:bookId', component: BookDetailsComponent},
-    {path: 'pagos', component: PaymentGatewayComponent, canActivate:[authGuard]},
-    {path: '', redirectTo: '/landing', pathMatch: 'full'},
-    {path: '**',redirectTo: '/landing', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
+  { path: 'landing', component: LandingComponent },
+  { path: 'busqueda-personalizada', component: BusquedaPersonalizadaComponent },
+  { path: 'catalogo', component: CatalogoComponent },
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'socialnet', component: SocialnetComponent },
+  { path: 'sobre-nosotros', component: SobreNosotrosComponent },
+  { path: 'create', component: CreateComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'mas-vendidos', component: MasVendidosComponent },
+  { path: 'book/:bookId', component: BookDetailsComponent },
+  {
+    path: 'pagos',
+    component: PaymentGatewayComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
 ];
